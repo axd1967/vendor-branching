@@ -2,9 +2,6 @@
 
 # DRAFT #
 
-## BUSY
-## TODO
-
 This document is an n-th attempt at explaining the vendor branching mechanism...
 
 As it is obvious that the problem is widespread, it feels unlikely that many users will change their minds... So this whole discussion is mainly oriented to those who are still fresh in the discipline...
@@ -363,13 +360,16 @@ In such cases, the version information should be removed before committing the v
 	- makes a comparison with submodule, subtree, brettlangdon
 - how to deal with huge repos, such as the migration of TLE to spacedatastandards OMM: their repo is too big for the average developer to ingest *as a vendor branch*.
 
-Think vendor branching is difficult? Eat [this](https://www.refontelearning.com/blog/tle-to-omm-six-digit-catalog-migration)!
-
 ## Related:
 
+- https://github.com/topics/vendor-branching
 - https://github.com/axd1967/SGP4-vendor-branching
 - https://github.com/axd1967/stellarium/blob/contrib/docs/vendor-branching/VENDOR_BRANCHING.md
 
 ## Elsewhere
 
 - https://github.com/cpm-cmake/CPM.cmake/discussions/720
+
+## BUSY
+## TODO
+
