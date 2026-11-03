@@ -1,8 +1,9 @@
 # Vendor branching : importing external artifacts without copy-pasta
 
+# DRAFT #
+
 ## BUSY
 ## TODO
-- scan the Stellarium issues for other stuff
 
 This document is an n-th attempt at explaining the vendor branching mechanism...
 
