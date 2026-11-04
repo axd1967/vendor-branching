@@ -1,73 +1,101 @@
 # Vendor branching : importing external artifacts without copy-pasta
 
-# DRAFT #
+---
+Document revisions
 
-This document is an n-th attempt at explaining the vendor branching mechanism...
+2026-11-05: v1-rc.1
 
-As it is obvious that the problem is widespread, it feels unlikely that many users will change their minds... So this whole discussion is mainly oriented to those who are still fresh in the discipline...
+- rewrite; split off 
+	- Stellarium related issues to (DRAFT) https://github.com/axd1967/stellarium/blob/contrib/docs/vendor-branching/VENDOR_BRANCHING.md
+	- SGP4 to (DRAFT) https://github.com/axd1967/SGP4-vendor-branching
 
-*In short: copy-pasting artefacts is a seemingly easy way to get things imported in a project. The problem is the maintainance effort that will follow. Do not assume the data is "written in stone" and will never change any more (be it inside your project or externally). Instead, every time you import anything from outside your project, be it code or data, ***do not bluntly copy-paste***; don't just create a "fork" of foreign artefacts unless there really is no other way. Following describes the recommended way to import such external artefacts. The procedure looks daunting, but that is only appearance.*
+---
+
+## Intro
+
+You copied artefacts from a fancy place, tweaked it and now you discover that meanwhile the fancy place updated their code. What now?
+Artefacts can be source code, data files, PDF files, supporting documentation...
+
+This document is the zillionth attempt at explaining the vendor branching mechanism.
+
+## The problem
+
+*In short: copy-pasting artefacts is a seemingly easy way to get things imported in a project. The problem is the maintainance effort that will follow. Do not assume the data is "written in stone" and will never change any more (be it inside your project or externally). Instead, every time you import anything from outside your project, be it code or data, ***do not bluntly copy-paste***; don't just create a "fork" of foreign artefacts unless there really is no other way.*
 
 Sometimes this problem is then solved by manual labor: porting the external changes in Stellarium, a laborous approach prone to bugs. **Extremely instructive use cases are presented on [Wikipedia](https://en.wikipedia.org/wiki/Software_rot#Forked_online_forum_example)**.
 
 Usually references of some form are added to the source code, e.g. ftp, snail mail, http, ... The problem is that these references might **disappear** at some point in the future. **This happens all the time with personal pages.** An example can be found in [this comment](https://github.com/Stellarium/stellarium/blob/dd006bc4095790dba6ceb7fe485284a6804a9fd4/plugins/Satellites/src/Satellites.cpp#L1929-L1931): **you will get a 404**: the pages are *gone*. *Those pages should somehow have been imported as vendor data.*
 
-Sometimes this can be solved by using package managers that automate the importing and updating of external "stuff" (typically code) and - important - allow to fine tune which version is to be imported; Python's `pip -e` is a great example of this. But package managers do not allow to modify the imported code out of the box *and* benefit from external updates. Also, package managers are not always the easiest way to deal with vendors, sometimes due to a lack of experience of contributing C++ developers. **Vendor branching is far easier to work with** than working with package managers, as all the required knowledge resides in how to deal with branching.
+The approach looks daunting, but that is only appearance.
 
-# Issues in other repositories
-The list is in fact huge...
+The external (source) version of such artifacts will often continue to evolve, but these modifications obviously will not be magically reflected in the project repository, thus *sometimes, if not often* leading to artifacts slowly getting totally outdated (hence the term "[code rot](https://en.wikipedia.org/wiki/Software_rot)").
+
+## Concrete issues elsewhere
 
 - https://github.com/tudat-team/tudat-resources/issues/11
 - the KIK case demonstrates what happens when one doesn't vendor: 
 	- https://www.theregister.com/2016/03/23/npm_left_pad_chaos/
 	- https://qz.com/646467/how-one-programmer-broke-the-internet-by-deleting-a-tiny-piece-of-code
 	- https://arstechnica.com/information-technology/2016/03/rage-quit-coder-unpublished-17-lines-of-javascript-and-broke-the-internet/
-	- https://www.activestate.com/blog/pythons-atomicwrites-and-software-dependency-availability-issues/
+- or what happens when one trusts external vendors:
+	- https://www.bleepingcomputer.com/news/security/dev-corrupts-npm-libs-colors-and-faker-breaking-thousands-of-apps
 
-## Intro
+---
 
-Artefacts can be source code, data files, PDF files, supporting documentation...
+## **A** solution: **vendor branching**
+
+Sometimes this can be solved by using package managers that automate the importing and updating of external "stuff" (typically code) and - important - allow to fine tune which version is to be imported; Python's `pip -e` is a great example of this. But package managers do not allow to modify the imported code out of the box *and* benefit from external updates. Also, package managers are not always the easiest way to deal with vendors, sometimes due to a lack of experience of contributing (C++) developers. (An advanced example is [Activestate](https://www.activestate.com/platform/supported-languages/python).)
 
 Artefacts that can be managed by package managers are not discussed here. An inconvenience of package managers might be that local modifications might be more difficult to manage. This is precisely what vendor branching has been designed for.
 
-Some artefacts are not available as text but in binary formats (eg [Yale Bright Star Catalog](http://tdc-www.harvard.edu/catalogs/catalogsb.html)).
+And sometimes there will be no package manager provided with the artefact. Often, the artefacts will live in zip or PDF files or HTML pages...
 
-The concept actually dates from the venerable [CVS](https://www.gnu.org/software/trans-coord/manual/cvs/cvs.html) and [SVN](https://subversion.apache.org/blog/)
+As it is obvious that the problem is widespread, it feels unlikely that many users will change their minds... So this whole discussion is mainly oriented to those who are still fresh in the discipline... And especially towards devs that are about to copy-paste.
 
-- How I discovered vendor branches: https://svnbook.red-bean.com/en/1.8/svn.advanced.vendorbr.html
-- and I indeed remember CVS already mentioned it long time ago in the Cederqvist PDF: https://www.gnu.org/software/trans-coord/manual/cvs/html_node/Tracking-sources.html (although it didn't mention how to contribute back)
+**Vendor branching is far easier to work with** than working with package managers, as all the required knowledge resides in how to work with branching (and merging).
 
-### The problem
+The concept already exists:
 
-Notice how it is not always obvious to trace back the original files. In the case of ephemeride routines, these reside in "ancient", core Stellarium files, it is extremely likely that they were copied (and *maybe* recent changes have been manually  and painfully incorporated in Stellarium). One aspect of the recommended vendor branch procedure details how to include such *meta information* so as to help find back the (original, root) source at all times.
-
-The external (source) version of such artifacts will often continue to evolve, but these modifications obviously will not be magically reflected in the project repository, thus *sometimes, if not often* leading to artifacts slowly getting totally outdated (hence the term "[code rot](https://en.wikipedia.org/wiki/Software_rot)").
+- in the venerable [CVS](https://www.gnu.org/software/trans-coord/manual/cvs/cvs.html): the ["Cederqvist" PDF](https://www.gnu.org/software/trans-coord/manual/cvs/html_node/Tracking-sources.html) is delicious lecture.
+- And [SVN](https://subversion.apache.org/blog/) (under ["Vendor Branches - Chapter 4. Branching and Merging"](https://svnbook.red-bean.com/en/1.8/svn.advanced.vendorbr.html)) is almost a reference.
+- [FreeBSD](https://github.com/freebsd/freebsd-doc/blob/main/documentation/content/en/articles/committers-guide/_index.adoc#54-vendor-imports-with-git) also explains the Vendor Branch concept (BTW - it uses `git subree`).
 
 Importing external artifacts therefore requires a specific (and in this case a *simple* - believe me, it is not rocket science - as well as generic) approach: the **Vendor Branch** approach. The proposed Vendor Branch approach is KISS: *simple to apply to novice programmers*. By the way, the approach is valid in any VCS, such as SVN (where it seems to have emerged), Git, Mercurial, ClearCase, TFS, CVS (where it already exists), you name it.
 
 Importing external artefacts in vendor branches will also provide insight in what changed in those artefacts, just by inspecting the "diff" between successive vendor versions. Normally such changes should also be announced by the vendor.
 
-## The solution
+## The big picture
 
-1. Keep external information alive (and updated) on a **separate** branch, called a "**vendor branch**" . Every copied dataset/tool/sourcecode lives unmodified in its own vendor branch (and possibly in its own (sub)directory; a subdirectory will always be needed in order to separate vendor artefacts from your project's). A vendor branch tracks a *pristine* copy/mirror of the external data.
-1. Ideally, the external information is stored in a separate directory (e.g. ``external/<vendor>/<toolname>``). If all the vendor publishes is a single file, then it will have to live in some subdirectory.
-1. **vendor tags** describe which version of the vendor artifacts has been imported (e.g. ``vendor/geonames/2021-08-21``; do use the ISO date/time format; if possible, prefef the vendor's tag info.)
-1. The vendor branch is merged to wherever it is needed (normally a feature branch, which will eventually be merged to ``master``)
-1. A ``VENDOR`` file - which is added in our local version of the vendor data - explains where the external/original information can be found, so that it can be updated when necessary.
-1. If needed (which is often the case), external information is modified *locally* (usually via a feature/master branch, but *never* in its vendor branch)
-1. Ideally, issues in the vendor artifacts should be reported to the vendor, so that updates can then be imported back via a fresh *vendor drop*. Alternatively, a developer can solve issues locally, but *never* in the vendor branch. Alternatively, a fix branch can be created from the vendor branch and a patch transmited to the vendor as well as merged locally.
+1. Track external changes in vendor branches
+1. Do not modify anything in vendor branches
+1. Updates in successive vendor artefact versions can be detected via diffs
+1. ... and merged to local branches (and finally end up in your project's `main` branch)
+1. Vendor tags track vendor releases
+1. A local file tracks metadata about the vendor artefacts so that the vendr artefacts can always be found (until they vanish).
+1. Local adaptations are likely and are applied in local branches (i.e. after merging the vendor branch).
+1. Later vendor releases are imported in the vendor branch and then merged. If local changes were done, those might then generate conflicts that need to be resolved. (`git rerere` could be very helpoful, BTW).
+1. Feel for contributing to the vendor code? Branch off the vendor branch, send the patch and merge locally.
+1. All this needs basic Git mastery.
 
-Sometimes, conversion routines need to be written or updated so that external data fits with the project. These routines do not belong in the vendor branch, but in the project itself. Remember that every vendor drop starts with an emptied vendor directory.
+## As a side note: the reverse situation: you are the vendor
 
-## SHORT HOW-TO
+Interestingly, one could also use the same concept to send your code as vendor code for an outside company. You create a vendor branch from your own code and send that to the external party. That branch might sometimes need some tweaks so that you prevent things from reaching the external party. That branch serves as a reference. When changes come back you merge those changes in that vendor branch (without changing them); maybe revert some things your removed  earlier in the branch; and finally to your own `main`.
 
-### 1/ define a **new vendor**
+---
+
+## HOW-TO
+
+### 1/ define a **new vendor**:
 
 Follow these steps in order to import external artefacts for the first time.
 
-1. **create a vendor branch** to import the vendor (e.g. ``vendor/CELESTRAK``). If the vendor provides multiple products, create the needed subbranches. (e.g. ``vendor/CELESTRAK/SGP4``). The "``vendor/``" segment is only meant to draw the attention to the concept.
+1. **create a vendor branch** to import the vendor (e.g. ``vendor/CELESTRAK``). If the vendor provides multiple products, you might want to create the needed subbranches instead (e.g. ``vendor/CELESTRAK/SGP4``). The "``vendor/``" segment is only meant to draw the attention to the concept.
 
-If the external project is a Git repo, use `git subtree add`:
+#### If the vendor publishes via a Git repo
+
+You are lucky.
+
+Use `git subtree add`:
 
 ```
 git checkout -c <vendor branch>
@@ -80,9 +108,10 @@ git merge <vendor tag>
 ```
 
 Note: avoid `--squash` otherwise you will not be able to contribute back to the vendor.
-And skip the remainder dealing with vendor dropping.
 
-Otherwise, manually create the vendor directory
+#### If the vendor does not use Git
+
+Manually create the vendor directory to hold all vendor aretefacts. Even for *one file* your need  directory.
 
 1. create a suitable **vendor directory** tree (e.g. ``vendor/CELESTRAK``) that will hold the external vendor artefacts. The vendor directory can also reside inside a normal directory
 1. unzip/copy/import/**explode**... the external data into the (until now empty) vendor directory. This is called a *vendor drop*.
@@ -91,37 +120,51 @@ Otherwise, manually create the vendor directory
 
 	``git add -A && git commit``
 
-1. **Tag** the vendor branch, e.g. ``vendor/geonames/1.0``. A path structure allows to group tags in a more structured way. If the vendor does not provide a clear version number, use the UTC date/time of the drop, formatted as ISO: ``vendor/geonames/2021-09-09T1200`` or a date/time as stamped by the vendor.
+#### And finalize the vendor branch creation
+
+1. **Tag** the vendor branch, e.g. ``vendor/geonames/1.0``. A path structure allows to group tags in a more structured way. If the vendor does not provide a clear version number, use e.g. the UTC date/time of the drop, formatted as ISO: ``vendor/geonames/2021-09-09T1200`` or a date/time as stamped by the vendor.
+
+#### Merge locally and optionally tweak
+
 1. **Switch** to your task branch
-1. **merge** (avoid fast forward for clarity) the vendor branch. *Do not delete the vendor branch.*
+1. **merge** the vendor branch; avoid fast forward for clarity.
 `` git merge --no-ff <vendor branch>``
-2. Add and commit a ``VENDOR.md`` file to ``vendor/CELESTRAK/`` that contains relevant **metadata** and instructions to help finding back the source. Avoid top-level (domain) adresses, try to make life easy for anyone wanting to update the data. Consider including the keyword "VENDOR" somewhere so that it can be grepped if needed. Make sure to include any PDF or comparable document that documents the vendor artefact, as well as where that PDF, data file, ... can be found.
-1. Do whatever is needed to **localise** the vendor artefacts (source code, data, ...) into your project. This is done in your task branch, never in the vendor branch. Often, source code will not run or compile completely. Sometimes, data needs to be transformed; include scripts to run migrations/conversions, because future vendor drops might require them.
-1. Have your task branch **integrated** into your main branch. Your project now contains folowing:
-	- a new vendor directory
+2. Add and commit a ``VENDOR.md`` file to ``vendor/CELESTRAK/`` that contains relevant **metadata** and instructions to help finding back the source. Consider including the keyword "VENDOR" somewhere so that it can also be grepped if needed.  Make sure to include any PDF or comparable document that documents the vendor artefact but was not included by the vendor, as well as where that PDF, data file, ... can be found.
+1. Do whatever is needed to **localise** the vendor artefacts (source code, data, ...) into your project. This is done in your task branch, never in the vendor branch. Often, source code will not run or compile completely. Sometimes, data needs to be transformed; include scripts to run migrations/conversions, because future vendor drops will require them.
+
+*Do not delete the vendor branch.*
+
+#### Integrate
+1. Have your task branch merged into your main branch. Your project now contains folowing:
 	- a vendor branch and a vendor tag
+	- a new vendor directory
 	- optionally, modified vendor code to make the vendor work seamlessly in your project
 1. **Remember to also push the *vendor* branch and tag**
 
-### 2/ perform a **vendor drop**
+### 2/ the vendor publishes a new release:
+Perform a **vendor drop**.
 
  When the vendor publishes an update, follow these steps to ingest those changes.
-
-*FIXME: markdown list item numbering issues here, due to code blocks...*
 
 1: **Switch** to the vendor branch
 
 ```
 git switch <vendor branch>
 ```
-If the vendor provides a Git repository, use `git subtree pull`
+
+#### ... via Git?
+You are lucky.
+
+*FIXME: markdown list item numbering issues here, due to code blocks...*
+
+Use `git subtree pull`
 
 ```
 cd `git rev-parse --show-toplevel`
 git subtree pull -P <path to vendor dir> <vendor URL>
 ```
 
-Otherwise
+#### Otherwise
 
 2: **empty** the vendor directory  
 
@@ -140,55 +183,77 @@ git ls-files -z | xargs -0 rm -f # remove everything. or simply `rm`?
    git commit
 ```
 
+#### Finally, round up the vendor drop
+
 5: **Tag** the vendor branch with a vendor tag (``vendor/<vendor name>/<vendor product>/<tag>``) where `<tag>` is either a tag available from the vendor, or otherwise the ISO date/time of the vendor drop or a vendor's timestamp.
+
+### Merge
 
 6: Merge the updated vendor branch to ``master`` (or, more probably, via an intermediate task/feature/bugfix branch, often in order to update local stuff). Run migration scripts if needed.
 
-7. Deal with conflicts when needed. Such conflicts are expected to arise when the vendor changed something that was also changed locally, or when your project contributed to the vendor.
+7: Deal with conflicts when needed. Such conflicts are expected to arise when the vendor changed something that was also changed locally, or when your project contributed to the vendor.
 
 This is also needed when the external data disappears: in that case, mention that the external data is no longer available to the public to avoid developers searching for it (or even worse, continue with a copy that still exists elsewhere!! Such a copy does not belong on the vendor branch).
 
-### 3/ contribute to the vendor project
+### 3/ want to contribute to the vendor project?
 
 It may happen that you find a bug in the vendor artefacts and can provide a fix.
 Here are the steps to follow.
-*Local modifications* are not meant to be shared with the vendor.
-
-TODO: add the `git subtree` case
+Remember: *local modifications* are not meant to be shared with the vendor.
 
 1. create a "contribution" branch **off a vendor tag**. Always start off an official version that is known by the vendor.
 1. apply changes as necessary. merge and test locally. (this is the most git-intensive part). do not change the vendor branch itself.
 1. send the contribution branch to the vendor as a pull request or patch (see Notes on patching)
+
+#### Finally
+
 1. merge the contribution branch to your local branches (task branch, main, ...)
 
 ### 4/ converting existing copy-pasted artefacts to their original vendor status
 
 This is not discussed for now. You should have followed the vendor branch strategy ;-)
-This requires courage; most will simply continue to dabble in their local copy.
+This is hard and requires courage; most will simply continue to dabble in their local copy.
 
-The steps to follow include
+The steps to follow *likely* include
 
 1. create the vendor
 1. rip out the old copy-pasta
 1. merge the vendor branch
-1. re-apply all changes that were performed on the original copy-pasta. This is probably a daunting task.
+1. the hard part: re-apply all changes that were performed on the original copy-pasta
 
-(TODO)
+---
 
 ## Notes
 
-### patching
+### Binary data
+
+Some artefacts are not available as text but in binary formats (eg [Yale Bright Star Catalog](http://tdc-www.harvard.edu/catalogs/catalogsb.html)).
+
+Example: `iras.tar.gz` at http://tdc-www.harvard.edu/catalogs/iras.html
+
+Remember to also include the documentation:
+
+- http://tdc-www.harvard.edu/catalogs/iras.header.html
+- http://tdc-www.harvard.edu/catalogs/iras.entry.html
+
+*This needs to be further worked out: how to ingest HTML? As txt? Full HTML can often be ok?*
+
+Other example: XML schema
+Sometimes a format is accompanied by a metadata section describing the format of the data. This metadata is an important artefact to commit to an vendor branch. *Changes to the schema will be readily identified as diffs in the vendor branch. That's why such files must be ingested too.*
+
+Sometimes, conversion routines need to be written or updated so that external data fits the project; maybe the data oitself is not needed, but only the generated data? These routines do not belong in the vendor branch, but in your project. 
+
+### Patching
 
 In some circumstances you want to also contribute to the vendor's project.
 
-If the vendor uses a Git repo, create a pull request and skip the remainder of this section on patching.
+If the vendor uses a Git repo that you can access, create a pull request and skip the remainder of this section on patching.
 
-Otherwise you need to send a patch.
-This is because your vendor directory contains totally different SHA-1 commits, so Git wouldn't know how to create a patch that can be applied on the vendor's side.
+Otherwise you need to send a patch, because your vendor directory contains totally different SHA-1 commits (that you created during the vendor drop), so the vendor's Git won't know how to apply your PR/patch.
 
 There are a few ways to handle this situation.
 
-#### create a patch file with `git diff`
+#### Create a patch file with `git diff`
 
 If your changes don't contain binary files, run a diff and send that to the vendor.
 Remember to generate a diff relative to the vendor directory.
@@ -205,13 +270,13 @@ The vendor will apply your patch (probably via a branch) using the classical `pa
 patch -p1 < patchfile
 ```
 
-#### how to deal with binaries
+#### How to deal with binaries
 
 If your patch adds/changes binary files, then supply those separately.
 
 TO CONFIRM: edit the patch file, remove the references to binaries(?), and mention this to the vendor.
 
-#### creating a patch using `git archive`
+#### Creating a patch using `git archive`
 
 The easiest way (also to avoid the binaries issue) is to send an entire archive *of the vendor directory* of your branch.
 The vendor will then ingest that in a branch (actually they are doing a kind of vendor drop...) and run their diff/merge/etc.
@@ -224,44 +289,45 @@ This creates a tgz file (run `git archive --list` for the formats) of the commit
 
 Note that this even works for a single vendor file, should you have chosen not to use a directory for the vendor artefact.
 
-### how to vendor drop a remote git repo
+### How to vendor drop a remote Git repo
 
-Sometimes, it might be desirable to convert a Git repo to an archive in order to perform the vendor drop.
+Sometimes, it might be preferrable to convert a Git repo to an `git archive` in order to perform the vendor drop.
 
-### what about `git submodules` (complex, delicate)
+### What about `git submodules` (complex, delicate)
 
 These are partial solutions offered by Git but do not provide the flexibility of vendor branching.
 To expand further.
 
-### what if external data is not available as text files
+### What if external data is not available as text files
 
-Sometimes, artefacts are not available as ready to ingest source code. But as a PDF that contains (parts of) source code. Or a binary formatted file.
+Sometimes, artefacts are not available as ready to ingest source code. But as a PDF that contains (parts of) source code.
 
 Such artefacts cannot magically be turned into source code.
 
-The idea is to store the artefact (PDF, binary file, ...) in a separate folder in the vendor branch, then painfully (yes...) extract the code into another separate folder in the vendor branch. And/or ask the author to provide a git repo, a file, archive, ...
+The idea is to store the artefact (PDF, binary file, ...) in a separate folder in the vendor branch, then painfully (yes...) extract the code into another separate folder *in the vendor branch*. And/or ask the author to provide a git repo, a file, archive, ...
 
 If there is no tarball to explode, do not empty the vendor directory, but manually update what changed. Often this can be accomplished via scripts. (??)
 
 And then only merge to main/master/...
 
-### dealing with coding style/conventions
+### Dealing with coding style/conventions
 
 When modifying vendor code, stick to the vendor coding style/conventions. Rewriting for readbility etc. will likely lead to massive conflicts at the next vendor drop.
 
-### dealing with trailing whitespace
+### Dealing with trailing whitespace
 
-*TODO: add directives how to deal with external artefacts originating from other platform environments.
-This is not directly related to vendor branching.*
+- see also "Formatting and Whitespace" at https://git-scm.com/book/en/v2/Customizing-Git-Git-Configuration
 
 Git tips (TO CONFIRM):
 
 - check your current global/local/worktree whitespace handling
 ```
 	git config --get-all --show-origin core.whitespace
+
+	# optionally:
 	git config --global core.whitespace trailing-space,-space-before-tab,indent-with-non-tab,cr-at-eol
 ```
-- enable your repo's pre-commit hook (it checks for various whitespace issues. See also ``git help hooks``
+- optionally, enable your repo's pre-commit hook (it checks for various whitespace issues. See also ``git help hooks``
 
 ### ...and platform end of line issues
 
@@ -282,14 +348,13 @@ Git tips (TO CONFIRM):
 ```
 	git config --global core.autocrlf input
 ```
- See also
+
+See also
+
 - ``git help config``
 - https://git-scm.com/book/en/v2/Customizing-Git-Git-Configuration
 - https://adaptivepatchwork.com/2012/03/01/mind-the-end-of-your-line/
 - https://docs.github.com/en/get-started/git-basics/configuring-git-to-handle-line-endings
-
-### Schema
-Sometimes a format is accompanied by a metadata section describing the format of the data. This metadata is an important artefact to commit to an vendor branch. *Changes to the schema will be readily identified as diffs in the vendor branch. That's why such files must be ingested too.*
 
 ### When conflicts are no longer manageable
 
@@ -299,13 +364,9 @@ In some cases, merging vendor updates may become too difficult if not impossible
 
 ### Importing vendor code written in other languages
 
-If the artifact is not usable without extensive rewriting (e.g. Fortran code in a C++ project), it might still make sense to vendor the original file and keep it as a neutral (uncompiled) text file that will serve as an excellent reference.
+If the artifact is not usable without extensive rewriting (e.g. Fortran code in a C++ project), it might still make sense to vendor the original file; it will serve as an excellent reference.
 
 This also applies for cases where explanatory/example (pseudo) sourcecode is offered; this code is essential documentation that the vendor might update occasionally.
-
-### How to deal with module files that are updated externally and still not vendored internally
-
-All hope is not lost! The basic idea is to create a vendor branch with the new artifact, and do some manual "undo-redo" work in the task branch .
 
 ### Version information in vendor file/directory paths
 
@@ -313,7 +374,7 @@ Sometimes, developers add directories/files with path names containing version i
 
 This is a bad practice, usually done by developers that do not have access to a good VCS. (Note also the CR/LF issue.)
 
-In such cases, the version information should be removed before committing the vendor drop; this will present the additional advantage that the history of such a file becomes available. This is a delicate step, as the "pristine copy" requirement is no longer fulfilled. If filename information is part of the correct functioning of the imported artifacts (e.g. it is also referenced in vendor scripts, in linked data, etc), then you are facing a difficult problem. In such a case (for now), it might be better to not rename the vendor file paths at all and accept that file history must be discovered by other means (e.g. a manual diff). *TODO find a better way here.*
+In such cases, the version information should be removed before committing the vendor drop; this will present the additional advantage that the history of such a file becomes available. This is a delicate step, as the "pristine copy" requirement is no longer fulfilled. If filename information is part of the correct functioning of the imported artifacts (e.g. it is also referenced in vendor scripts, in linked data, etc), then you are facing a difficult problem. In such a case (for now), it might be better to not rename the vendor file paths at all and accept that file history must be discovered by other means (e.g. a manual diff). *TODO find a better way here.* Note that Git might be able to find out what changed in renamed files.
 
 ## See also
 
@@ -327,16 +388,16 @@ In such cases, the version information should be removed before committing the v
 - https://stackoverflow.com/questions/1710027/arguments-for-and-against-including-3rd-party-libraries-in-version-control/1710050
 
 ### Github
+
 - https://github.com/stars/axd1967/lists/vendor-branching
 - new topic: https://github.com/topics/vendor-branching
-- [a FreeBSD article for committers](https://github.com/freebsd/freebsd-doc/blob/main/documentation/content/en/articles/committers-guide/_index.adoc)
-- this topic probably contains many more examples: https://github.com/topics/vendor
+- this topic probably contains many more examples but is clouded by unrelated topics: https://github.com/topics/vendor; if possible, try to convince those repos to change to the more focused `vendor-branching` tag.
 
 ### Copy-pasta
 - https://en.wikipedia.org/wiki/Software_rot
 - https://en.wikipedia.org/wiki/Copypasta#Technology
 - "*[copy-paste is evil](https://stackoverflow.com/questions/2490884/why-is-copy-and-paste-of-code-dangerous)*"
-- https://www.cisa.gov/resources-tools/resources/product-security-bad-practices: _"Cache copies of all open-source dependencies within the manufacturer’s own build systems and do not update products or customer systems directly from unverified public sources."_ (Dead link, track https://github.com/cisagov/bad-practices/discussions/101)
+- https://www.cisa.gov/resources-tools/resources/product-security-bad-practices: _"Cache copies of all open-source dependencies within the manufacturer’s own build systems and do not update products or customer systems directly from unverified public sources."_ (Dead link, see instead https://github.com/cisagov/bad-practices/discussions/101)
 
 ### Git
 - https://github.com/git/git/blob/master/Documentation/technical/unit-tests.adoc
@@ -349,27 +410,19 @@ In such cases, the version information should be removed before committing the v
 - `git submodule`:
 	- https://github.com/git/git/blob/master/Documentation/user-manual.adoc#submodules
 
-### to be evaluated:
+### To be evaluated:
 - a [rebasing vendor branch workflow](https://talesfromthearmchair.net/a-rebasing-vendor-branch-workflow-for.html)
-	- if you read this far, we need to grok this
-- https://github.com/brettlangdon/git-vendor
-	- recommended (FWIW) by https://medium.com/opsops/git-vendor-295db4bcec3a)
-	- looks dead
+	- if you read this far, we need to grok that
+	- looks related to [FreeBSD 5.4.6. Rebasing your change against latest FreeBSD source tree](https://github.com/freebsd/freebsd-doc/blob/main/documentation/content/en/articles/committers-guide/_index.adoc#546-rebasing-your-change-against-latest-freebsd-source-tree)
 - https://github.com/thejoshwolfe/git-vendor
 	- a script to automate vendor branching:
 	- makes a comparison with submodule, subtree, brettlangdon
+- (Dead?) https://github.com/brettlangdon/git-vendor
 - how to deal with huge repos, such as the migration of TLE to spacedatastandards OMM: their repo is too big for the average developer to ingest *as a vendor branch*.
 
-## Related:
+## Links
 
 - https://github.com/topics/vendor-branching
 - https://github.com/axd1967/SGP4-vendor-branching
 - https://github.com/axd1967/stellarium/blob/contrib/docs/vendor-branching/VENDOR_BRANCHING.md
-
-## Elsewhere
-
-- https://github.com/cpm-cmake/CPM.cmake/discussions/720
-
-## BUSY
-## TODO
 
