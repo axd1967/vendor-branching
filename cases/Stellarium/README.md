@@ -1,6 +1,13 @@
 # Vendor artifacts in Stellarium
 
+This document lists vendor branching issues in Stellarium.
+
+1. the recipe for a generic vendor branch (VB) strategy is explained [here](../../README.md).
+1. SGP4 related VB aspects are dealt with [here](../SGP4/README.md).
+
 # DRAFT
+
+This file is being rewritten.
 
 ---
 
@@ -10,17 +17,8 @@ Document revisions
 
 ---
 
-This file is being reformatted.
-
-This document lists vendor branching issues in Stellarium.
-
 - https://github.com/CelesTrak/fundamentals-of-astrodynamics/discussions/173
 - https://github.com/cpm-cmake/CPM.cmake/discussions/720
-
-Related projects:
-
-1. the recipe for a generic vendor branch (VB) strategy is explained at https://github.com/axd1967/vendor-branching.
-1. For SGPO4 related VB aspects, see https://github.com/axd1967/SGP4-vendor-branching
 
 ### The problem
 

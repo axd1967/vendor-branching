@@ -1,5 +1,12 @@
 # SGP4 forks
 
+This project tries to create an inventory of SGP4 forks and suggest those users to try to not reinvent the wheel...
+
+**The reference should be [Vallado's](https://github.com/CelesTrak/fundamentals-of-astrodynamics/)**.
+Bugs and contributions should be discussed there (please read their [CONTRIBUTING](https://github.com/CelesTrak/fundamentals-of-astrodynamics/blob/main/CONTRIBUTING.md)).
+
+To avoid forking off so far that updates in Vallado's require manual labour, try to follow the [Vendor Branch approach](../../README.md).
+
 # DRAFT
 
 ---
@@ -13,35 +20,31 @@ Document revisions
 
 scratchpad:
 
-https://github.com/DigitalArsenal/spacedatastandards.org/issues/33
-https://github.com/orgs/tudat-team/discussions/120#discussioncomment-19352150
-https://github.com/brandon-rhodes/python-sgp4/discussions/176#discussion-11217270
-https://github.com/ssmichael1/satkit
-https://github.com/orgs/tudat-team/discussions/120#discussioncomment-16881205
-https://github.com/tudat-team/tudat-resources/issues/11
+- https://github.com/DigitalArsenal/spacedatastandards.org/issues/33
+- https://github.com/orgs/tudat-team/discussions/120#discussioncomment-19352150
+- https://github.com/brandon-rhodes/python-sgp4/discussions/176#discussion-11217270
+- https://github.com/ssmichael1/satkit
+- https://github.com/orgs/tudat-team/discussions/120#discussioncomment-16881205
+- https://github.com/tudat-team/tudat-resources/issues/11
 
-https://ccsds.org/publications/moims/
-https://github.com/DigitalArsenal/spacedatastandards.org
-https://celestrak.org/NORAD/documentation/gp-data-formats.php
-https://www.movingsatellites.com/e_gps.html (probably to be discarded)
+- https://ccsds.org/publications/moims/
+- https://github.com/DigitalArsenal/spacedatastandards.org
+- https://celestrak.org/NORAD/documentation/gp-data-formats.php
+- https://www.movingsatellites.com/e_gps.html (probably to be discarded)
 
-https://github.com/shashwatak/satellite-js
-https://github.com/shashwatak/satellite-js
-https://github.com/magnific0/SGP4 (dead, see https://github.com/magnific0/SGP4/issues/1)
-https://github.com/aholinch/sgp4 (dead? https://github.com/aholinch/sgp4/issues/9)
-https://www.projectpluto.com/sat_code.htm and https://github.com/Bill-Gray/sat_code
-https://github.com/DigitalArsenal/spacedatastandards.org/issues/33
-https://github.com/orgs/tudat-team/discussions/120#discussioncomment-19352150
-https://github.com/brandon-rhodes/python-sgp4/ 
+- https://github.com/shashwatak/satellite-js
+- https://github.com/shashwatak/satellite-js
+- https://github.com/magnific0/SGP4 (dead, see https://github.com/magnific0/SGP4/issues/1)
+- https://github.com/aholinch/sgp4 (dead? https://github.com/aholinch/sgp4/issues/9)
+- https://www.projectpluto.com/sat_code.htm and https://github.com/Bill-Gray/sat_code
+- https://github.com/DigitalArsenal/spacedatastandards.org/issues/33
+- https://github.com/orgs/tudat-team/discussions/120#discussioncomment-19352150
+- https://github.com/brandon-rhodes/python-sgp4/ 
 	- compare to https://github.com/CelesTrak/fundamentals-of-astrodynamics/tree/main/software/python
 	- see https://github.com/brandon-rhodes/python-sgp4/discussions/176#discussion-11217270
-https://github.com/ssmichael1/satkit
-https://github.com/orgs/tudat-team/discussions/120#discussioncomment-16881205 and https://github.com/tudat-team/tudat-resources/issues/11
+- https://github.com/ssmichael1/satkit
+- https://github.com/orgs/tudat-team/discussions/120#discussioncomment-16881205 and https://github.com/tudat-team/tudat-resources/issues/11
 
-
-This project tries to create an inventory of SGP4 forks and convince those users to try to not reinvent the wheel...
-
-The reference should be Vallado's https://github.com/CelesTrak/fundamentals-of-astrodynamics/tree/main/software/cpp/SGP4/SGP4
 
 [This Celestrak publication](https://celestrak.org/publications/AIAA/2006-6753/AIAA-2006-6753.zip) is already a first invitation to go copy-pasting. 
 BTW - it is unclear how it relates to the GitHub version. In other words, when publishing code, use a VCS (Git is highly recommended...), not a file format.
@@ -75,15 +78,10 @@ A interesting approach to avoid copy-pasta is described here: https://github.com
 - https://github.com/dnwrnr/sgp4/
 - https://github.com/ssmichael1/satkit
 
-## Issues
-
-# Discussions
 
 - https://github.com/DigitalArsenal/spacedatastandards.org/issues/33
 
-## BUSY
 ## TODO
 - list as much forks as possible
 - discussions, issues
-
 
