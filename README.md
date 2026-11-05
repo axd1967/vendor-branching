@@ -36,10 +36,14 @@ The approach looks daunting, but that is only appearance.
 
 The external (source) version of such artifacts will often continue to evolve, but these modifications obviously will not be magically reflected in the project repository, thus *sometimes, if not often* leading to artifacts slowly getting totally outdated (hence the term "[code rot](https://en.wikipedia.org/wiki/Software_rot)").
 
-## Concrete issues elsewhere
+## Examples
 
+The Internet sure is full of examples. Here I list *just a very few* that I came across
+
+- the [SGP4 clones](cases/SGP4/README.md)
+- copy-paste issues in [Stellarium](cases/Stellarium/README.md)
 - https://github.com/tudat-team/tudat-resources/issues/11
-- the KIK case demonstrates what happens when one doesn't vendor: 
+- the "KIK case" demonstrates what can go wrong when one doesn't vendor: 
 	- https://www.theregister.com/2016/03/23/npm_left_pad_chaos/
 	- https://qz.com/646467/how-one-programmer-broke-the-internet-by-deleting-a-tiny-piece-of-code
 	- https://arstechnica.com/information-technology/2016/03/rage-quit-coder-unpublished-17-lines-of-javascript-and-broke-the-internet/
@@ -70,7 +74,9 @@ Importing external artifacts therefore requires a specific (and in this case a *
 
 Importing external artefacts in vendor branches will also provide insight in what changed in those artefacts, just by inspecting the "diff" between successive vendor versions. Normally such changes should also be announced by the vendor.
 
-## The big picture
+## The essential steps
+
+(See "HOW-TO" for more details)
 
 1. Track external changes in vendor branches
 1. Do not modify anything in vendor branches
@@ -85,7 +91,7 @@ Importing external artefacts in vendor branches will also provide insight in wha
 
 ## As a side note: the reverse situation: you are the vendor
 
-Interestingly, one could also use the same concept to send your code as vendor code for an outside company. You create a vendor branch from your own code and send that to the external party. That branch might sometimes need some tweaks so that you prevent things from reaching the external party. That branch serves as a reference. When changes come back you merge those changes in that vendor branch (without changing them); maybe revert some things your removed  earlier in the branch; and finally to your own `main`.
+Interestingly, one could also use the same concept when "subcontracting" your code as vendor code for an outside company. You create a vendor branch from your own code and send that to the external party. That branch might sometimes need some tweaks so that you prevent things from reaching the external party. That branch serves as a reference. When changes come back you merge those changes in that vendor branch (without changing them); maybe revert some things your removed  earlier in the branch; and finally to your own `main`.
 
 ---
 
@@ -395,9 +401,14 @@ In such cases, the version information should be removed before committing the v
 
 ### Github
 
-- https://github.com/stars/axd1967/lists/vendor-branching
 - new topic: https://github.com/topics/vendor-branching
-- this topic probably contains many more examples but is clouded by unrelated topics: https://github.com/topics/vendor; if possible, try to convince those repos to change to the more focused `vendor-branching` tag.
+- other topics that might or might not be related to Vendor Branching and might benefit from switching to the `vendor-branching` topic:
+	- https://github.com/topics/vendor
+	- https://github.com/topics/vendor-fork
+	- https://github.com/topics/vendor-management
+	- https://github.com/topics/vendoring
+	- https://github.com/topics/vendors
+- https://github.com/stars/axd1967/lists/vendor-branching
 
 ### Copy-pasta
 - https://en.wikipedia.org/wiki/Software_rot
@@ -419,16 +430,10 @@ In such cases, the version information should be removed before committing the v
 ### To be evaluated:
 - a [rebasing vendor branch workflow](https://talesfromthearmchair.net/a-rebasing-vendor-branch-workflow-for.html)
 	- if you read this far, we need to grok that
-	- looks related to [FreeBSD 5.4.6. Rebasing your change against latest FreeBSD source tree](https://github.com/freebsd/freebsd-doc/blob/main/documentation/content/en/articles/committers-guide/_index.adoc#546-rebasing-your-change-against-latest-freebsd-source-tree)
+	- looks very similar to [FreeBSD 5.4.6. Rebasing your change against latest FreeBSD source tree](https://github.com/freebsd/freebsd-doc/blob/main/documentation/content/en/articles/committers-guide/_index.adoc#546-rebasing-your-change-against-latest-freebsd-source-tree)
 - https://github.com/thejoshwolfe/git-vendor
-	- a script to automate vendor branching:
-	- makes a comparison with submodule, subtree, brettlangdon
-- (Dead?) https://github.com/brettlangdon/git-vendor
-- how to deal with huge repos, such as the migration of TLE to spacedatastandards OMM: their repo is too big for the average developer to ingest *as a vendor branch*.
-
-## Links
-
-- https://github.com/topics/vendor-branching
-- https://github.com/axd1967/SGP4-vendor-branching
-- https://github.com/axd1967/stellarium/blob/contrib/docs/vendor-branching/VENDOR_BRANCHING.md
+	- a script to automate vendor branching
+	- makes a comparison with submodule, subtree, brettlangdon (which is dead?)
+	- maybe too complicated?
+- how to deal with huge repos, such as the migration of TLE format to spacedatastandards OMM (see [SGP4](cases/SGP4/README.md): their repo is too big for the average developer to ingest *as a vendor branch*.
 

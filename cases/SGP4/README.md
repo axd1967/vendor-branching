@@ -58,7 +58,7 @@ A interesting approach to avoid copy-pasta is described here: https://github.com
 	- https://github.com/DigitalArsenal/spacedatastandards.org/tree/main/dist/OMM
 	- https://ccsds.org/publications/moims/
 	- OTOH SDS will not go away soon... so maybe no immediate need for panic. but a vendor drop can also highlight *changes* that might have impact elsewhere in Stellarium
-	- git clone --no-checkout --verbose --shallow-submodules --single-branch --filter=blob:none -o da/sds/gh https://github.com/DigitalArsenal/spacedatastandards.org
+	- what works fr now: `git clone --no-checkout --verbose --shallow-submodules --single-branch --filter=blob:none -o da/sds/gh https://github.com/DigitalArsenal/spacedatastandards.org`
 	- what about https://github.com/tudat-team ?
 		- https://github.com/orgs/tudat-team/discussions/120
 	- more links...
