@@ -27,14 +27,15 @@ Document revisions
 
 ## A few SGP4 forks that I already found
 
+- these should be relatively safe: https://github.com/CelesTrak/fundamentals-of-astrodynamics/network
+
+## TODO
+
 - https://www.projectpluto.com/sat_code.htm
 - https://pypi.org/project/sgp4/ 
 	- https://github.com/brandon-rhodes/python-sgp4/discussions/176#discussion-11217270
 - https://github.com/dnwrnr/sgp4/
 - https://github.com/ssmichael1/satkit
-
-
-## TODO
 
 - https://github.com/DigitalArsenal/spacedatastandards.org/issues/33
 - https://github.com/orgs/tudat-team/discussions/120#discussioncomment-19352150
