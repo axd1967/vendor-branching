@@ -3,9 +3,15 @@
 ---
 Document revisions
 
+2026-11-05: v1-rc.2
+
+- make Stellarium and SGP4 just subprojects
+	- [cases/Stellarium/README.md](cases/Stellarium/README.md)
+	- [cases/SGP4/README.md](cases/SGP4/README.md)
+
 2026-11-05: v1-rc.1
 
-- rewrite; split off 
+- rewrite; split off
 	- Stellarium related issues to (DRAFT) https://github.com/axd1967/stellarium/blob/contrib/docs/vendor-branching/VENDOR_BRANCHING.md
 	- SGP4 to (DRAFT) https://github.com/axd1967/SGP4-vendor-branching
 
