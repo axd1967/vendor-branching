@@ -5,7 +5,7 @@ This project tries to create an inventory of SGP4 forks and suggest those users 
 **The reference should be [Vallado's](https://github.com/CelesTrak/fundamentals-of-astrodynamics/)**.
 Bugs and contributions should be discussed there (please read their [CONTRIBUTING](https://github.com/CelesTrak/fundamentals-of-astrodynamics/blob/main/CONTRIBUTING.md)).
 
-To avoid forking off so far that updates in Vallado's require manual labour, try to follow the [Vendor Branch approach](../../README.md).
+To avoid forking off so far that updates in Vallado's require manual labour, a suggested approach is to use [Vendor Branching](../../README.md).
 
 # DRAFT
 
