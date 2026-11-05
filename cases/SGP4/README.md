@@ -2,15 +2,20 @@
 
 This project tries to create an inventory of SGP4 forks and propose a Simple and Sound Software Engineering Approach to avoid the consequences of bluntly copy-pasting or re-inventing code.
 
-Because the picture that appears is that many developers try to re-invent the warm water.
+Because the picture that appears is that many developers try to re-invent the warm water: see https://github.com/CelesTrak/fundamentals-of-astrodynamics/discussions/173.
 
-But I'm beginning to understand why: the original code was [published](https://celestrak.org/publications/) in a format ([PDF](https://celestrak.org/NORAD/documentation/spacetrk.pdf)) (1988) that was the norm back then but is not easy to ingest in software, so many developers went their way with the paper. Note that the update (https://celestrak.org/publications/AIAA/2006-6753/) (2006) does mention this flurry of new versions. **Appears the "reference" [Vallado's](https://github.com/CelesTrak/fundamentals-of-astrodynamics/) that can be ingested by more efficient means than just copy-pasting.**
+# DRAFT
+This document is still WIP
+
+---
+
+But I'm beginning to understand why: the original code was [published](https://celestrak.org/publications/) in a format ([PDF](https://celestrak.org/NORAD/documentation/spacetrk.pdf)) (1988) that was the norm back then but is not easy to ingest in software, so many developers went their way with the paper. The [update](https://celestrak.org/publications/AIAA/2006-6753/) (2006) mentions this flurry of new versions. **Nowadays the "reference" [Vallado's](https://github.com/CelesTrak/fundamentals-of-astrodynamics/) can be ingested by more efficient means than just copy-pasting.**
 
 Bugs and contributions should be discussed there (please read their [CONTRIBUTING](https://github.com/CelesTrak/fundamentals-of-astrodynamics/blob/main/CONTRIBUTING.md)).
 
-To avoid forking off so far that updates in Vallado's require manual labour, a suggested approach is to use [Vendor Branching](../../README.md). The hard part (that most will not be able to overcome) is to rip out their code and start over from Vallado's. BUT ... not by simply copy-pasting code.
+To avoid forking off so far that updates in Vallado's require manual labour, a suggested approach is to use [Vendor Branching](../../README.md).
 
-# DRAFT
+The hard part (that most will not be able to overcome) is to rip out their code and start over from Vallado's. BUT ... not by simply copy-pasting code.
 
 ---
 
@@ -20,8 +25,16 @@ Document revisions
 
 ---
 
+## A few SGP4 forks that I already found
 
-scratchpad:
+- https://www.projectpluto.com/sat_code.htm
+- https://pypi.org/project/sgp4/ 
+	- https://github.com/brandon-rhodes/python-sgp4/discussions/176#discussion-11217270
+- https://github.com/dnwrnr/sgp4/
+- https://github.com/ssmichael1/satkit
+
+
+## TODO
 
 - https://github.com/DigitalArsenal/spacedatastandards.org/issues/33
 - https://github.com/orgs/tudat-team/discussions/120#discussioncomment-19352150
@@ -48,16 +61,15 @@ scratchpad:
 - https://github.com/ssmichael1/satkit
 - https://github.com/orgs/tudat-team/discussions/120#discussioncomment-16881205 and https://github.com/tudat-team/tudat-resources/issues/11
 
-
 [This Celestrak publication](https://celestrak.org/publications/AIAA/2006-6753/AIAA-2006-6753.zip) is already a first invitation to go copy-pasting. 
-BTW - it is unclear how it relates to the GitHub version. In other words, when publishing code, use a VCS (Git is highly recommended...), not a file format.
+BTW - it is unclear how it relates to the [GitHub version](https://github.com/CelesTrak/fundamentals-of-astrodynamics/tree/main/software). It is different, for sure; so it might be good to make GitHub the reference and remove such outdated documents. In other words, when publishing code, use a VCS (Git is highly recommended...), not a file format.
 
-A interesting approach to avoid copy-pasta is described here: https://github.com/axd1967/vendor-branching
+An interesting approach to avoid the copy-pasta is described [here](https://github.com/axd1967/vendor-branching).
 
-## related
+## more related/todo
 
 - upcoming SDS's [OMM schema](https://spacedatastandards.org/#/schemas/OMM)? (although this will be less trivial to deal with : *TODO*)
-	- https://github.com/DigitalArsenal/spacedatastandards.org/tree/main/src/cpp
+	- https://github.com/DigitalArsenal/spacedatastandards.org/tree/main/src/
 	- https://github.com/DigitalArsenal/spacedatastandards.org/tree/main/dist/OMM
 	- https://ccsds.org/publications/moims/
 	- OTOH SDS will not go away soon... so maybe no immediate need for panic. but a vendor drop can also highlight *changes* that might have impact elsewhere in Stellarium
@@ -71,20 +83,4 @@ A interesting approach to avoid copy-pasta is described here: https://github.com
 		- https://doc.qt.io/qt-6/wasm.html
 		- https://algodaily.com/lessons/compiling-c-to-wasm-14b05d27
 		- https://github.com/google/flatbuffers, https://flatbuffers.dev/
-
-
-## SGP4 forks
-
-- https://www.projectpluto.com/sat_code.htm
-- https://pypi.org/project/sgp4/ 
-	- https://github.com/brandon-rhodes/python-sgp4/discussions/176#discussion-11217270
-- https://github.com/dnwrnr/sgp4/
-- https://github.com/ssmichael1/satkit
-
-
-- https://github.com/DigitalArsenal/spacedatastandards.org/issues/33
-
-## TODO
-- list as much forks as possible
-- discussions, issues
 
