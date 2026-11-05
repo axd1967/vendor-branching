@@ -41,6 +41,7 @@ Notice how it is not always obvious to trace back the original files. In the cas
 ## Future candidates
 
 - The reference SGP4 implementation from Vallado/Celestrak (https://github.com/CelesTrak/fundamentals-of-astrodynamics). See also https://github.com/axd1967/SGP4-vendor-branching.
+	- the original code was copy-pasted [here](https://github.com/Stellarium/stellarium/tree/master/plugins/Satellites/src/gsatellite).
 - An upcoming Gaia DR3 draft patch by SceneryMC uses explicit references to two external repositories.
 See [Gaia DR3 PR](https://github.com/Stellarium/stellarium/pull/4991)... It refers to forked code from
 	- Henry Leung (https://github.com/henrysky/stellarium_star_catalogs)
@@ -48,11 +49,8 @@ See [Gaia DR3 PR](https://github.com/Stellarium/stellarium/pull/4991)... It refe
 	- `parse_hip_catalog.py`
 	- `simbad_query_hipsaohdhr.py`
 	- `py/geodesic.py`
-Note: Henry Leung - whose repo is forked by SceneryMC - has a bad habit of renaming files. This makes vendoring more difficult.
+Note: Henry Leung - whose repo is forked by SceneryMC - has a bad habit of renaming files. This makes vendoring more difficult although Git should be able to handle it.
 A branch has been pushed [here](https://github.com/axd1967/stellarium/tree/PR-4991-with-vendoring) to convert the Gaia DR3 PR to a "vendor compliant" approach.
-
-## Discussion
-
 
 ### Examples:
 

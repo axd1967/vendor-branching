@@ -1,11 +1,14 @@
 # SGP4 forks
 
-This project tries to create an inventory of SGP4 forks and suggest those users to try to not reinvent the wheel...
+This project tries to create an inventory of SGP4 forks and propose a Simple and Sound Software Engineering Approach to avoid the consequences of bluntly copy-pasting or re-inventing code.
 
-**The reference should be [Vallado's](https://github.com/CelesTrak/fundamentals-of-astrodynamics/)**.
+Because the picture that appears is that many developers try to re-invent the warm water.
+
+But I'm beginning to understand why: the original code was [published](https://celestrak.org/publications/) in a format ([PDF](https://celestrak.org/NORAD/documentation/spacetrk.pdf)) (1988) that was the norm back then but is not easy to ingest in software, so many developers went their way with the paper. Note that the update (https://celestrak.org/publications/AIAA/2006-6753/) (2006) does mention this flurry of new versions. **Appears the "reference" [Vallado's](https://github.com/CelesTrak/fundamentals-of-astrodynamics/) that can be ingested by more efficient means than just copy-pasting.**
+
 Bugs and contributions should be discussed there (please read their [CONTRIBUTING](https://github.com/CelesTrak/fundamentals-of-astrodynamics/blob/main/CONTRIBUTING.md)).
 
-To avoid forking off so far that updates in Vallado's require manual labour, a suggested approach is to use [Vendor Branching](../../README.md).
+To avoid forking off so far that updates in Vallado's require manual labour, a suggested approach is to use [Vendor Branching](../../README.md). The hard part (that most will not be able to overcome) is to rip out their code and start over from Vallado's. BUT ... not by simply copy-pasting code.
 
 # DRAFT
 
@@ -23,6 +26,7 @@ scratchpad:
 - https://github.com/DigitalArsenal/spacedatastandards.org/issues/33
 - https://github.com/orgs/tudat-team/discussions/120#discussioncomment-19352150
 - https://github.com/brandon-rhodes/python-sgp4/discussions/176#discussion-11217270
+	- https://github.com/karlhillx/python-sgp4
 - https://github.com/ssmichael1/satkit
 - https://github.com/orgs/tudat-team/discussions/120#discussioncomment-16881205
 - https://github.com/tudat-team/tudat-resources/issues/11
@@ -32,7 +36,6 @@ scratchpad:
 - https://celestrak.org/NORAD/documentation/gp-data-formats.php
 - https://www.movingsatellites.com/e_gps.html (probably to be discarded)
 
-- https://github.com/shashwatak/satellite-js
 - https://github.com/shashwatak/satellite-js
 - https://github.com/magnific0/SGP4 (dead, see https://github.com/magnific0/SGP4/issues/1)
 - https://github.com/aholinch/sgp4 (dead? https://github.com/aholinch/sgp4/issues/9)
