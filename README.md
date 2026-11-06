@@ -436,4 +436,5 @@ In such cases, the version information should be removed before committing the v
 	- makes a comparison with submodule, subtree, brettlangdon (which is dead?)
 	- maybe too complicated?
 - how to deal with huge repos, such as the migration of TLE format to spacedatastandards OMM (see [SGP4](cases/SGP4/README.md): their repo is too big for the average developer to ingest *as a vendor branch*.
+- helping decide whag license may or may not allow vendor branching
 
