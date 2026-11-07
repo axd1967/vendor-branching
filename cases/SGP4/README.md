@@ -71,7 +71,9 @@ See also
 	- https://github.com/DigitalArsenal/spacedatastandards.org/tree/main/src/
 	- https://github.com/DigitalArsenal/spacedatastandards.org/tree/main/dist/OMM
 	- OTOH SDS will not go away soon... so maybe no immediate need for panic. But a vendor drop can also highlight *changes* that might have impact elsewhere in your project
-	- what works for now: `git clone --no-checkout --verbose --shallow-submodules --single-branch --filter=blob:none -o da/sds/gh https://github.com/DigitalArsenal/spacedatastandards.org`
+	- what works for now: 
+		-`git clone --no-checkout --verbose --shallow-submodules --single-branch --filter=blob:none -o da/sds/gh https://github.com/DigitalArsenal/spacedatastandards.org`
+		- `git clone -o da/sds/gh-wiki https://github.com/DigitalArsenal/spacedatastandards.org.wiki.git wiki`
 	- more links...
 		- WASM: https://webassembly.github.io/spec/core/index.html
 		- https://github.com/WebAssembly/wasi-sdk
