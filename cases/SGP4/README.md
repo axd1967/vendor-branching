@@ -7,7 +7,10 @@ See also [Wikipedia](https://en.wikipedia.org/wiki/Simplified_perturbations_mode
 
 This project tries to create an inventory of SGP4 forks and propose a Simple and Sound Software Engineering Approach to avoid the consequences of bluntly copy-pasting or re-inventing code.
 
-Because the picture that appears is that many developers try to re-invent the warm water: see https://github.com/CelesTrak/fundamentals-of-astrodynamics/discussions/173.
+Because the picture that appears is that many developers try to re-invent the warm water: see 
+
+	- https://github.com/CelesTrak/fundamentals-of-astrodynamics/discussions/173
+	- https://github.com/DigitalArsenal/spacedatastandards.org/issues/5
 
 **As a result, new users are overwhelmed by implementations that try to call themselve a reference.**
 
