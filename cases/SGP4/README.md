@@ -7,10 +7,11 @@ See also [Wikipedia](https://en.wikipedia.org/wiki/Simplified_perturbations_mode
 
 This project tries to create an inventory of SGP4 forks and propose a Simple and Sound Software Engineering Approach to avoid the consequences of bluntly copy-pasting or re-inventing code.
 
-Because the picture that appears is that many developers try to re-invent the warm water: see 
+Because the picture that appears is that many developers try to re-invent the warm water (or copy-paste): see
 
 	- https://github.com/CelesTrak/fundamentals-of-astrodynamics/discussions/173
 	- https://github.com/DigitalArsenal/spacedatastandards.org/issues/5
+	- https://github.com/DigitalArsenal/spacedatastandards.org/issues/3
 
 **As a result, new users are overwhelmed by implementations that try to call themselve a reference.**
 
@@ -22,13 +23,13 @@ To avoid forking off so far that updates in Vallado's require manual labour, a s
 
 If you think of writing an SGP propagator, please consider the [VB approach](../../README.md).
 
-Maybe this approach will encourage users to explore the later models (SGP8/SDP8).
+Maybe this approach will also encourage users to explore the later models (SGP8/SDP8).
 
 Bugs and contributions should be discussed there (please read their [CONTRIBUTING](https://github.com/CelesTrak/fundamentals-of-astrodynamics/blob/main/CONTRIBUTING.md)).
 
 Note that SGP4 users might also have the need to decode OMM (successor to the deprecated TLE) data. SDS provides the routines needed to decode such data, and either the VB approach *or a package manager* should be used to decode that data.
 
-GitHub forks should be safe if they keep merging...
+GitHub forks should be safe as long as they keep merging...
 
 - https://github.com/CelesTrak/fundamentals-of-astrodynamics/network
 
