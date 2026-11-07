@@ -40,7 +40,7 @@ Notice how it is not always obvious to trace back the original files. In the cas
 
 ## Future candidates
 
-- The reference SGP4 implementation from Vallado/Celestrak (https://github.com/CelesTrak/fundamentals-of-astrodynamics). See also https://github.com/axd1967/SGP4-vendor-branching.
+- The reference SGP4 implementation from Vallado/Celestrak (https://github.com/CelesTrak/fundamentals-of-astrodynamics). Please see [SGP4](../SGP/README.md).
 	- the original code was copy-pasted [here](https://github.com/Stellarium/stellarium/tree/master/plugins/Satellites/src/gsatellite).
 - An upcoming Gaia DR3 draft patch by SceneryMC uses explicit references to two external repositories.
 See [Gaia DR3 PR](https://github.com/Stellarium/stellarium/pull/4991)... It refers to forked code from
