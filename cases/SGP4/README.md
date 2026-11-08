@@ -119,3 +119,5 @@ See also
 - https://github.com/aholinch/sgp4 (dead? https://github.com/aholinch/sgp4/issues/9)
 - https://github.com/magnific0/SGP4 (dead, see https://github.com/magnific0/SGP4/issues/1)
 
+Think vendor branching is difficult? Eat [this](https://www.refontelearning.com/blog/tle-to-omm-six-digit-catalog-migration)!
+

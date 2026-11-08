@@ -24,7 +24,9 @@ Document revisions
 
 The Stellarium project regularly "copy-pastes" files from the outside. 
 
-A solution to this problem is called [Vendor Branching](https://github.com/axd1967/vendor-branching).
+A solution to this problem is called [Vendor Branching](../../README.md).
+
+An attempt was made to bring the attention to the issue in this [discussion](https://github.com/Stellarium/stellarium/discussions/1856).
 
 Stellarium is constantly benefiting from open source artifacts and being enriched with text/data/source files that are **copy-pasted** from places outside Stellarium.
 Notice how it is not always obvious to trace back the original files. In the case of ephemeride routines, these reside in "ancient", core Stellarium files, it is extremely likely that they were copied (and *maybe* recent changes have been manually  and painfully incorporated in Stellarium). One aspect of the recommended vendor branch procedure details how to include such *meta information* so as to help find back the (original, root) source at all times.
@@ -75,7 +77,7 @@ Here are several existing artifacts that (still) get copy-pasted in Stellarium:
 - Almagest data (minor fixes, of course - this is essentially frozen data)
 - HTC algorithms (Helene, Telesto, and Calypso (Lagrangian satellites of Dione) - taken from [IMCCE](ftp://ftp.imcce.fr/pub/ephem/satel/htc20/htc20.f) ? )
 - The SPG4 routines
-	- please see https://github.com/axd1967/SGP4-vendor-branching
+	- please see also the [SGP4 case](../../SGP4/README.md)
 	- the [gsatellite directory](plugins/Satellites/src/gsatellite) seems to contain a lot of external code that has been modified locally.
 	- used in the [satellite plugin](https://github.com/Stellarium/stellarium/blob/e75b00e6c249747c198fe0e2badd77a4adab9415/plugins/Satellites/src/Satellites.hpp#L56-L57).
 	- It should be vendored and then adapted  (See Vallado link above)
@@ -144,11 +146,5 @@ The vendor branch approach could also works for users that want to keep track of
 ### Stellarium
 - https://github.com/Stellarium/stellarium/discussions/1856
 - https://github.com/Stellarium/stellarium/pull/1906
-- https://github.com/axd1967/stellarium/blob/contrib/docs/vendor-branching/VENDOR_BRANCHING.md (this file)
 - https://github.com/Stellarium/stellarium/wiki/Branching-Strategy (defunct but a copy exists)
-
-Think vendor branching is difficult? Eat [this](https://www.refontelearning.com/blog/tle-to-omm-six-digit-catalog-migration)!
-
-## BUSY
-## TODO
 

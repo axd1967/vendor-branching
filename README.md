@@ -38,10 +38,13 @@ The external (source) version of such artifacts will often continue to evolve, b
 
 ## Examples
 
-The Internet sure is full of examples. Here I list *just a very few* that I came across
+First, there are cases of "special interest" that are discussed separately:
 
-- the [SGP4 clones](cases/SGP4/README.md)
-- copy-paste issues in [Stellarium](cases/Stellarium/README.md)
+1. copy-paste issues in [Stellarium](cases/Stellarium/README.md) started the whole "vendor branching" project after a discussion 
+1. the [SGP4 clones](cases/SGP4/README.md) is a specific example inside Stellarium. I never thought it would become such an expanding oil spill.
+
+Furthermore, the Internet sure is full of examples. Here I list *just a very few* that I came across
+
 - https://github.com/tudat-team/tudat-resources/issues/11
 - the "KIK case" demonstrates what can go wrong when one doesn't vendor: 
 	- https://www.theregister.com/2016/03/23/npm_left_pad_chaos/
