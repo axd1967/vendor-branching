@@ -55,13 +55,21 @@ Furthermore, the Internet sure is full of examples. Here I list *just a very few
 
 ---
 
-## **A** solution: **vendor branching**
+## A solution: package managers
 
-Sometimes this can be solved by using package managers that automate the importing and updating of external "stuff" (typically code) and - important - allow to fine tune which version is to be imported; Python's `pip -e` is a great example of this. But package managers do not allow to modify the imported code out of the box *and* benefit from external updates. Also, package managers are not always the easiest way to deal with vendors, sometimes due to a lack of experience of contributing (C++) developers. (An advanced example is [Activestate](https://www.activestate.com/platform/supported-languages/python).)
+Sometimes this can be solved by using package managers that automate the importing and updating of external "stuff" (typically code) and - important - allow to fine tune which version is to be imported.
+
+Python's `pip -e` is a great example of this. Modifying the vendor code [is less great](https://stackoverflow.com/questions/37668773/edit-package-installed-by-pip).
+
+An advanced example is [Activestate](https://www.activestate.com/platform/supported-languages/python).
 
 Artefacts that can be managed by package managers are not discussed here. An inconvenience of package managers might be that local modifications might be more difficult to manage. This is precisely what vendor branching has been designed for.
 
 And sometimes there will be no package manager provided with the artefact. Often, the artefacts will live in zip or PDF files or HTML pages...
+
+Package managers do not allow to modify the imported code out of the box *and* benefit from external updates. Also, package managers are not always the easiest way to deal with vendors, sometimes due to a lack of experience of contributing developers that often are volunteers - that come and go.
+
+## Another (KISS) solution: **vendor branching**
 
 As it is obvious that the problem is widespread, it feels unlikely that many users will change their minds... So this whole discussion is mainly oriented to those who are still fresh in the discipline... And especially towards devs that are about to copy-paste.
 
@@ -76,6 +84,8 @@ The concept already exists:
 Importing external artifacts therefore requires a specific (and in this case a *simple* - believe me, it is not rocket science - as well as generic) approach: the **Vendor Branch** approach. The proposed Vendor Branch approach is KISS: *simple to apply to novice programmers*. By the way, the approach is valid in any VCS, such as SVN (where it seems to have emerged), Git, Mercurial, ClearCase, TFS, CVS (where it already exists), you name it.
 
 Importing external artefacts in vendor branches will also provide insight in what changed in those artefacts, just by inspecting the "diff" between successive vendor versions. Normally such changes should also be announced by the vendor.
+
+This is in fact an important version control pattern.
 
 ## The essential steps
 
@@ -95,6 +105,16 @@ Importing external artefacts in vendor branches will also provide insight in wha
 ## As a side note: the reverse situation: you are the vendor
 
 Interestingly, one could also use the same concept when "subcontracting" your code as vendor code for an outside company. You create a vendor branch from your own code and send that to the external party. That branch might sometimes need some tweaks so that you prevent things from reaching the external party. That branch serves as a reference. When changes come back you merge those changes in that vendor branch (without changing them); maybe revert some things your removed  earlier in the branch; and finally to your own `main`.
+
+
+## The difference
+
+1. Advantages
+	- easier
+1. Inconveniences
+	- the vendor creation takes maybe much more space than needed
+1. What barely changes
+	- a vendor drop ingests diffs on a branch first prior to the merge
 
 ---
 
@@ -430,7 +450,11 @@ In such cases, the version information should be removed before committing the v
 - `git submodule`:
 	- https://github.com/git/git/blob/master/Documentation/user-manual.adoc#submodules
 
+---
+
 ### To be evaluated:
+- https://stackoverflow.com/ai-assist/shared/4adf31b5-4c07-4b3b-9fc1-61d89536a4b7
+	- impact on diff
 - a [rebasing vendor branch workflow](https://talesfromthearmchair.net/a-rebasing-vendor-branch-workflow-for.html)
 	- if you read this far, we need to grok that
 	- looks very similar to [FreeBSD 5.4.6. Rebasing your change against latest FreeBSD source tree](https://github.com/freebsd/freebsd-doc/blob/main/documentation/content/en/articles/committers-guide/_index.adoc#546-rebasing-your-change-against-latest-freebsd-source-tree)
@@ -438,6 +462,10 @@ In such cases, the version information should be removed before committing the v
 	- a script to automate vendor branching
 	- makes a comparison with submodule, subtree, brettlangdon (which is dead?)
 	- maybe too complicated?
-- how to deal with huge repos, such as the migration of TLE format to spacedatastandards OMM (see [SGP4](cases/SGP4/README.md): their repo is too big for the average developer to ingest *as a vendor branch*.
-- helping decide whag license may or may not allow vendor branching
+- how to deal with huge repos, 
+	-such as the migration of TLE format to spacedatastandards OMM (see [SGP4](cases/SGP4/README.md): their repo is too big for the average developer to ingest *as a vendor branch*.
+	- git lfs
+- helping decide what license may or may not allow vendor branching
+- https://pip.pypa.io/en/stable/development/vendoring-policy/
+- https://pip.pypa.io/en/stable/cli/pip_wheel/
 
