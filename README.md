@@ -112,7 +112,7 @@ Interestingly, one could also use the same concept when "subcontracting" your co
 1. Advantages
 	- easier
 1. Inconveniences
-	- the vendor creation takes maybe much more space than needed
+	- the vendor creation takes maybe much more space than needed; if the vendor is huge, the initial drop will be huge too
 1. What barely changes
 	- a vendor drop ingests diffs on a branch first prior to the merge
 
@@ -345,52 +345,6 @@ If there is no tarball to explode, do not empty the vendor directory, but manual
 
 And then only merge to main/master/...
 
-### Dealing with coding style/conventions
-
-When modifying vendor code, stick to the vendor coding style/conventions. Rewriting for readbility etc. will likely lead to massive conflicts at the next vendor drop.
-
-### Dealing with trailing whitespace
-
-- see also "Formatting and Whitespace" at https://git-scm.com/book/en/v2/Customizing-Git-Git-Configuration
-
-Git tips (TO CONFIRM):
-
-- check your current global/local/worktree whitespace handling
-```
-	git config --get-all --show-origin core.whitespace
-
-	# optionally:
-	git config --global core.whitespace trailing-space,-space-before-tab,indent-with-non-tab,cr-at-eol
-```
-- optionally, enable your repo's pre-commit hook (it checks for various whitespace issues. See also ``git help hooks``
-
-### ...and platform end of line issues
-
-*TODO: replace with ``.gitattributes`` ?*
-
-- check line ending handling
-```
-	git config --get-all --show-origin core.autocrlf # empty == 'false'
-	git config --get-all --show-origin core.safecrlf # empty == 'false'
-	git config --get-all --show-origin core.eol # empty = 'native'
-```
-- make sure...
-- as a **Windows** developer, that CRLF is converted to LF when comitting:
-```
-	$ git config --global core.autocrlf true
-```
-- as a **Linux** dev, ensure that
-```
-	git config --global core.autocrlf input
-```
-
-See also
-
-- ``git help config``
-- https://git-scm.com/book/en/v2/Customizing-Git-Git-Configuration
-- https://adaptivepatchwork.com/2012/03/01/mind-the-end-of-your-line/
-- https://docs.github.com/en/get-started/git-basics/configuring-git-to-handle-line-endings
-
 ### When conflicts are no longer manageable
 
 In some cases, merging vendor updates may become too difficult if not impossible. Welcome to merge hell? Nevertheless, vendor drops will continue to provide the means to port changes, by allowing the developer to study at least what changed in the vendor branch, and apply those changes ... manually.
@@ -450,6 +404,55 @@ In such cases, the version information should be removed before committing the v
 - `git submodule`:
 	- https://github.com/git/git/blob/master/Documentation/user-manual.adoc#submodules
 
+## Various git tips
+
+### Dealing with coding style/conventions
+
+When modifying vendor code, stick to the vendor coding style/conventions. Rewriting for readbility etc. will likely lead to massive conflicts at the next vendor drop.
+
+### Dealing with trailing whitespace
+
+- see also "Formatting and Whitespace" at https://git-scm.com/book/en/v2/Customizing-Git-Git-Configuration
+
+Git tips (TO CONFIRM and maybe to move out of this file):
+
+- gitignore rules should relate to project files only, not developer habits. e.g. a `[Dd]esktop.ini` pattern does belongs in `~/.gitignore`
+- check your current global/local/worktree whitespace handling
+```
+	git config --get-all --show-origin core.whitespace
+
+	# optionally:
+	git config --global core.whitespace trailing-space,-space-before-tab,indent-with-non-tab,cr-at-eol
+```
+- optionally, enable your repo's pre-commit hook (it checks for various whitespace issues. See also ``git help hooks``
+
+### ...and platform end of line issues
+
+*TODO: replace with ``.gitattributes`` ?*
+
+- check line ending handling
+```
+	git config --get-all --show-origin core.autocrlf # empty == 'false'
+	git config --get-all --show-origin core.safecrlf # empty == 'false'
+	git config --get-all --show-origin core.eol # empty = 'native'
+```
+- make sure...
+- as a **Windows** developer, that CRLF is converted to LF when comitting:
+```
+	$ git config --global core.autocrlf true
+```
+- as a **Linux** dev, ensure that
+```
+	git config --global core.autocrlf input
+```
+
+See also
+
+- ``git help config``
+- https://git-scm.com/book/en/v2/Customizing-Git-Git-Configuration
+- https://adaptivepatchwork.com/2012/03/01/mind-the-end-of-your-line/
+- https://docs.github.com/en/get-started/git-basics/configuring-git-to-handle-line-endings
+
 ---
 
 ### To be evaluated:
@@ -465,6 +468,8 @@ In such cases, the version information should be removed before committing the v
 - how to deal with huge repos, 
 	-such as the migration of TLE format to spacedatastandards OMM (see [SGP4](cases/SGP4/README.md): their repo is too big for the average developer to ingest *as a vendor branch*.
 	- git lfs
+	- a very interesting approach is to make a mirror of the vendor, apply local changes, and import the branch with the modified files "somehow" (not sure [CPM](https://github.com/cpm-cmake/CPM.cmake/discussions/720) is needed) in the local project is needed. Pity submodules must live inside their superprojects.
+	- note that the Git SCM book also explains [submodules](https://git-scm.com/book/en/v2/Git-Tools-Submodules) as a solution: "The issue with copying the code into your own project [without using submodules] is that any custom changes you make are difficult to merge when upstream changes become available.". But the whole concept feels heavy.
 - helping decide what license may or may not allow vendor branching
 - https://pip.pypa.io/en/stable/development/vendoring-policy/
 - https://pip.pypa.io/en/stable/cli/pip_wheel/
