@@ -115,6 +115,7 @@ Interestingly, one could also use the same concept when "subcontracting" your co
 	- the vendor creation takes maybe much more space than needed; if the vendor is huge, the initial drop will be huge too
 1. What barely changes
 	- a vendor drop ingests diffs on a branch first prior to the merge
+	- for example, one simple test shows that a bare Fossil repo takes 6Mb (basically a SQLite file) while the same repo vendored and checked out in Git takes 17M (same size when opened in Fossil; git could reduce this with sparse checkout) plus 8.3M (reduced to 5.3M after `git gc`) inside .git/
 
 ---
 
