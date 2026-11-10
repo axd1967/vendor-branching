@@ -107,7 +107,6 @@ This is in fact an important version control pattern.
 
 Interestingly, one could also use the same concept when "subcontracting" your code as vendor code for an outside company. You create a vendor branch from your own code and send that to the external party. That branch might sometimes need some tweaks so that you prevent things from reaching the external party. That branch serves as a reference. When changes come back you merge those changes in that vendor branch (without changing them); maybe revert some things your removed  earlier in the branch; and finally to your own `main`.
 
-
 ## The difference
 
 1. Advantages
@@ -171,6 +170,7 @@ Manually create the vendor directory to hold all vendor aretefacts. Even for *on
 *Do not delete the vendor branch.*
 
 #### Integrate
+
 1. Have your task branch merged into your main branch. Your project now contains folowing:
 	- a vendor branch and a vendor tag
 	- a new vendor directory
@@ -178,6 +178,7 @@ Manually create the vendor directory to hold all vendor aretefacts. Even for *on
 1. **Remember to also push the *vendor* branch and tag**
 
 ### 2/ the vendor publishes a new release:
+
 Perform a **vendor drop**.
 
  When the vendor publishes an update, follow these steps to ingest those changes.
@@ -189,6 +190,7 @@ git switch <vendor branch>
 ```
 
 #### ... via Git?
+
 You are lucky.
 
 *FIXME: markdown list item numbering issues here, due to code blocks...*
@@ -245,7 +247,12 @@ Remember: *local modifications* are not meant to be shared with the vendor.
 
 1. merge the contribution branch to your local branches (task branch, main, ...)
 
-### 4/ converting existing copy-pasted artefacts to their original vendor status
+### 4/ you never modified the vendor code, and now you want to...
+
+This is the easy one: create the vendor branch. Merge back to master. And then start modifying.
+It is assumed that the vendor artefacts already live in a separate directory, otherwise you first need to move those into a directory.
+
+### 5/ converting existing copy-pasted artefacts to their original vendor status
 
 This is not discussed for now. You should have followed the vendor branch strategy ;-)
 This is hard and requires courage; most will simply continue to dabble in their local copy.
@@ -461,6 +468,7 @@ See also
 	- impact on diff
 - a [rebasing vendor branch workflow](https://talesfromthearmchair.net/a-rebasing-vendor-branch-workflow-for.html)
 	- if you read this far, we need to grok that
+	- because rebasing might give issues.
 	- looks very similar to [FreeBSD 5.4.6. Rebasing your change against latest FreeBSD source tree](https://github.com/freebsd/freebsd-doc/blob/main/documentation/content/en/articles/committers-guide/_index.adoc#546-rebasing-your-change-against-latest-freebsd-source-tree)
 - https://github.com/thejoshwolfe/git-vendor
 	- a script to automate vendor branching
