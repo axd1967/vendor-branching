@@ -1,5 +1,7 @@
 # HOW-TO
 
+This how-to uses Git as an example, but the same steps apply in all VCS.
+
 ### 1/ define a **new vendor**:
 
 Follow these steps in order to import external artefacts for the first time.
@@ -44,7 +46,11 @@ Manually create the vendor directory to hold all vendor aretefacts. Even for *on
 1. **Switch** to your task branch
 1. **merge** the vendor branch; avoid fast forward for clarity.
 `` git merge --no-ff <vendor branch>``
-2. Add and commit a ``VENDOR.md`` file to ``vendor/CELESTRAK/`` that contains relevant **metadata** and instructions to help finding back the source. Consider including the keyword "VENDOR" somewhere so that it can also be grepped if needed.  Make sure to include any PDF or comparable document that documents the vendor artefact but was not included by the vendor, as well as where that PDF, data file, ... can be found.
+2. Add and commit a ``VENDOR.md`` file to ``vendor/CELESTRAK/`` that contains relevant **metadata**
+	- instructions to help finding back the source. 
+	- consider including the keyword "VENDOR" somewhere so that it can also be grepped if needed.
+	- Make sure to include any PDF or comparable document that documents the vendor artefact but was not included by the vendor, as well as where that PDF, data file, ... can be found.
+	- provide a CLI command that can easily be pasted in a terminal to update the vendor. Maybe a script can help?
 1. Do whatever is needed to **localise** the vendor artefacts (source code, data, ...) into your project. This is done in your task branch, never in the vendor branch. Often, source code will not run or compile completely. Sometimes, data needs to be transformed; include scripts to run migrations/conversions, because future vendor drops will require them.
 
 *Do not delete the vendor branch.*
@@ -81,6 +87,8 @@ Use `git subtree pull`
 cd `git rev-parse --show-toplevel`
 git subtree pull -P <path to vendor dir> <vendor URL>
 ```
+
+Notice that the arguments are not "remembered" (such as a pull from a remote).  The vendor path and URL are needed (for now).  So please add an example `git subtree` command in the VENDOR file.
 
 ### Otherwise
 

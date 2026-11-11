@@ -1,10 +1,12 @@
 # Vendor branching : importing external artifacts without copy-pasta
 
 ---
+
 Document revisions
 
-Current
+2026-11-11: v1-rc.3
 
+- rework further
 - split off
 	- [HOW-TO](HOW-TO.md)
 	- [NOTES](NOTES.md)
@@ -19,14 +21,14 @@ Current
 2026-11-05: v1-rc.1
 
 - rewrite; split off
-	- Stellarium related issues to (DRAFT) https://github.com/axd1967/stellarium/blob/contrib/docs/vendor-branching/VENDOR_BRANCHING.md
+	- Stellarium related issues to https://github.com/axd1967/stellarium/blob/contrib/docs/vendor-branching/VENDOR_BRANCHING.md
 	- SGP4 to (DRAFT) https://github.com/axd1967/SGP4-vendor-branching
 
 ---
 
 ## Intro
 
-You copied artefacts from a fancy place, tweaked it and now you discover that meanwhile the fancy place updated their code. What now?
+You copied artefacts from a fancy place to your favourite VCS, tweaked it and now you discover that meanwhile the fancy place updated their code. What now?
 Artefacts can be source code, data files, PDF files, supporting documentation...
 
 This document is the zillionth attempt at explaining the vendor branching mechanism. Despite the Internet abound with how-to's, developers keep falling in the trap.
@@ -106,7 +108,7 @@ This is in fact an important version control pattern.
 1. Local adaptations are likely and are applied in local branches (i.e. after merging the vendor branch).
 1. Later vendor releases are imported in the vendor branch and then merged. If local changes were done, those might then generate conflicts that need to be resolved. (`git rerere` could be very helpoful, BTW).
 1. Feel for contributing to the vendor code? Branch off the vendor branch, send the patch and merge locally.
-1. All this needs basic Git mastery.
+1. All this needs basic VCS mastery.
 
 See ["HOW-TO"](HOW-TO.md) for the more detailed steps.
 
@@ -121,17 +123,19 @@ Interestingly, one could also use the same concept when "subcontracting" your co
 ## The difference
 
 1. Advantages
-	- easier
+	- easier for the average developer
+	- no manual patching, no need for separate patch scripts
+	- no dependency on the vendor (or even a network connection)
 1. Inconveniences
-	- the vendor creation takes maybe much more space than needed; if the vendor is huge, the initial drop will be huge too
+	- the repo will grow a bit larger
+	- the vendor creation might much more space than needed if the vendor is huge
+		- for example, one simple test shows that (using Git and Fossil as a case)
+			1. a bare Fossil repo (=SQLite format) file (e.g. [rejig](https://tangentsoft.com/rpn/dir?ci=trunk)) is about ~6Mb (2026-11)
+			1. `fossil open` inflates to 17M
+			1. a `.git/` vendor drop of that repo takes 5.1M (8.3M but then cleaned by `git gc`)
+			1. git can further reduce disk space with a sparse checkout
 1. What barely changes
 	- a vendor drop ingests diffs on a branch first prior to the merge
-	- for example, one simple test shows that 
-		1. a bare Fossil repo (=SQLite format) file is about [~6Mb](https://tangentsoft.com/rpn/dir?ci=trunk)
-		1. `fossil open` inflates to 17M
-		1. the `.git/` directory of that repo vendored takes 5.1M (8.3M but then cleaned by `git gc`) 
-		1. git can reduce disk space with sparse checkout
-
 ---
 
 ## See also
@@ -162,13 +166,3 @@ Interestingly, one could also use the same concept when "subcontracting" your co
 - "*[copy-paste is evil](https://stackoverflow.com/questions/2490884/why-is-copy-and-paste-of-code-dangerous)*"
 - https://www.cisa.gov/resources-tools/resources/product-security-bad-practices: _"Cache copies of all open-source dependencies within the manufacturer’s own build systems and do not update products or customer systems directly from unverified public sources."_ (Dead link, see instead https://github.com/cisagov/bad-practices/discussions/101)
 
-### Git
-- https://github.com/git/git/blob/master/Documentation/technical/unit-tests.adoc
-- how to correctly vendor drop: https://github.com/git/git/blob/master/Documentation/git-rm.adoc#using-git-add--a
-- `git subtree`:
-	- https://apenwarr.ca/log/20090430-a-new-alternative-to-git-submodules-git-subtree
-	- https://github.com/git/git/blob/master/contrib/subtree/git-subtree.adoc
-	- https://david.rothlis.net/vendor-branch/
-	- https://www.atlassian.com/git/tutorials/git-subtree
-- `git submodule`:
-	- https://github.com/git/git/blob/master/Documentation/user-manual.adoc#submodules
