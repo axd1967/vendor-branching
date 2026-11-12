@@ -55,6 +55,12 @@ First, there are cases of "special interest" that are discussed separately:
 1. the [SGP4 clones](cases/SGP4/README.md) is a specific example inside Stellarium. I never thought it would become such an expanding oil spill.
 1. [rejig](https://tangentsoft.com/rejig/dir?ci=tip) is imported and then patched into [a subdirectory of the C47 project](https://gitlab.com/rpncalculators/c43/-/tree/master/tools/rejig?ref_type=heads)
 
+With the advent of AI, the copy-paste movement has expanded to a next level: copy-pasting via cloning.
+**AI agents need to be taught the vendor branching pattern.** Otherwise the same problem will propagate even more exponentially because forking wil become much more easy, disregarding the fundamental issue: how to deal with the updstream changes. Currently, the approach seems to be to generate patch files. But this amounts to leaving out the vendor branch. What then when upstream changes? Same problem.
+
+https://forum.swissmicros.com/viewtopic.php?f=41&t=4936
+https://forum.swissmicros.com/viewtopic.php?f=46&t=4876
+
 Furthermore, the Internet sure is full of examples. Here I list *just a very few* that I came across
 
 - https://github.com/tudat-team/tudat-resources/issues/11
