@@ -14,6 +14,7 @@ To expand further.
 - https://git-scm.com/docs/gitmodules
 - https://github.com/git/git/blob/master/Documentation/user-manual.adoc#submodules
 - https://gitprotect.io/blog/managing-git-projects-git-subtree-vs-submodule/
+- https://github.com/apenwarr/git-subtrac mentions issues when using subtree
 
 ## Dealing with trailing whitespace
 
