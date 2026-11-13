@@ -4,6 +4,11 @@
 
 Document revisions
 
+2026-11-13: v1-rc.4
+
+- use `git switch --orphan` to create vendor branch
+- refine use of `git subtree`
+
 2026-11-11: v1-rc.3
 
 - rework further
@@ -60,6 +65,10 @@ With the advent of AI, the copy-paste movement has expanded to a next level: cop
 
 https://forum.swissmicros.com/viewtopic.php?f=41&t=4936
 https://forum.swissmicros.com/viewtopic.php?f=46&t=4876
+
+Note to self:
+https://conventionalbranch.org/
+https://www.conventionalcommits.org/
 
 Furthermore, the Internet sure is full of examples. Here I list *just a very few* that I came across
 
