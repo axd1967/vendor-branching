@@ -6,6 +6,7 @@ Document revisions
 
 2026-11-13: v1-rc.4
 
+- AI and vendor branching [AGENTS.md](AGENTS.md)
 - use `git switch --orphan` to create vendor branch
 - refine use of `git subtree`
 
@@ -38,6 +39,8 @@ Artefacts can be source code, data files, PDF files, supporting documentation...
 
 This document is the zillionth attempt at explaining the vendor branching mechanism. Despite the Internet abound with how-to's, developers keep falling in the trap.
 
+There is more: this is related to the concept of the software supply chain.
+
 ## The problem
 
 *In short: copy-pasting artefacts is a seemingly easy way to get things imported in a project. The problem is the maintainance effort that will follow. Do not assume the data is "written in stone" and will never change any more (be it inside your project or externally). Instead, every time you import anything from outside your project, be it code or data, ***do not bluntly copy-paste***; don't just create a "fork" of foreign artefacts unless there really is no other way.*
@@ -60,20 +63,11 @@ First, there are cases of "special interest" that are discussed separately:
 1. the [SGP4 clones](cases/SGP4/README.md) is a specific example inside Stellarium. I never thought it would become such an expanding oil spill.
 1. [rejig](https://tangentsoft.com/rejig/dir?ci=tip) is imported and then patched into [a subdirectory of the C47 project](https://gitlab.com/rpncalculators/c43/-/tree/master/tools/rejig?ref_type=heads)
 
-With the advent of AI, the copy-paste movement has expanded to a next level: copy-pasting via cloning.
-**AI agents need to be taught the vendor branching pattern.** Otherwise the same problem will propagate even more exponentially because forking wil become much more easy, disregarding the fundamental issue: how to deal with the updstream changes. Currently, the approach seems to be to generate patch files. But this amounts to leaving out the vendor branch. What then when upstream changes? Same problem.
-
-https://forum.swissmicros.com/viewtopic.php?f=41&t=4936
-https://forum.swissmicros.com/viewtopic.php?f=46&t=4876
-
-Note to self:
-https://conventionalbranch.org/
-https://www.conventionalcommits.org/
-
 Furthermore, the Internet sure is full of examples. Here I list *just a very few* that I came across
 
 - https://github.com/tudat-team/tudat-resources/issues/11
-- the "KIK case" demonstrates what can go wrong when one doesn't vendor: 
+- the "npm left-pad incident" demonstrates what can go wrong when one doesn't vendor: 
+	- https://en.wikipedia.org/wiki/Npm_left-pad_incident
 	- https://www.theregister.com/2016/03/23/npm_left_pad_chaos/
 	- https://qz.com/646467/how-one-programmer-broke-the-internet-by-deleting-a-tiny-piece-of-code
 	- https://arstechnica.com/information-technology/2016/03/rage-quit-coder-unpublished-17-lines-of-javascript-and-broke-the-internet/
@@ -81,6 +75,8 @@ Furthermore, the Internet sure is full of examples. Here I list *just a very few
 	- https://www.bleepingcomputer.com/news/security/dev-corrupts-npm-libs-colors-and-faker-breaking-thousands-of-apps
 
 ## A solution: package managers
+
+https://en.wikipedia.org/wiki/Package_manager
 
 Sometimes this can be solved by using package managers that automate the importing and updating of external "stuff" (typically code) and - important - allow to fine tune which version is to be imported.
 
@@ -119,7 +115,8 @@ This is in fact an important version control pattern.
 1. Updates in successive vendor artefact versions can be detected via diffs
 1. ... and merged to local branches (and finally end up in your project's `main` branch)
 1. Vendor tags track vendor releases
-1. A local file tracks metadata about the vendor artefacts so that the vendr artefacts can always be found (until they vanish).
+1. A local file tracks metadata about the vendor artefacts so that the vendor artefacts can always be found (until they vanish).
+1. SBOM: this file should also contain checksum and GPG key fingerprint of the vendor, plus how to check it
 1. Local adaptations are likely and are applied in local branches (i.e. after merging the vendor branch).
 1. Later vendor releases are imported in the vendor branch and then merged. If local changes were done, those might then generate conflicts that need to be resolved. (`git rerere` could be very helpoful, BTW).
 1. Feel for contributing to the vendor code? Branch off the vendor branch, send the patch and merge locally.
@@ -176,8 +173,16 @@ Interestingly, one could also use the same concept when "subcontracting" your co
 - https://github.com/stars/axd1967/lists/vendor-branching
 
 ### Copy-pasta
+
 - https://en.wikipedia.org/wiki/Software_rot
 - https://en.wikipedia.org/wiki/Copypasta#Technology
 - "*[copy-paste is evil](https://stackoverflow.com/questions/2490884/why-is-copy-and-paste-of-code-dangerous)*"
 - https://www.cisa.gov/resources-tools/resources/product-security-bad-practices: _"Cache copies of all open-source dependencies within the manufacturer’s own build systems and do not update products or customer systems directly from unverified public sources."_ (Dead link, see instead https://github.com/cisagov/bad-practices/discussions/101)
+
+## TODO
+
+Looks like this is very relevant: SBOM: 
+	- https://en.wikipedia.org/wiki/Software_supply_chain
+	- https://en.wikipedia.org/wiki/Supply_chain_attack
+- https://en.wikipedia.org/wiki/Dependency_hell
 
