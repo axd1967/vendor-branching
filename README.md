@@ -6,7 +6,7 @@ Document revisions
 
 2026-11-13: v1-rc.4
 
-- AI and vendor branching [AGENTS.md](AGENTS.md)
+- AI and vendor branching : new page [AGENTS.md](AGENTS.md)
 - use `git switch --orphan` to create vendor branch
 - refine use of `git subtree`
 

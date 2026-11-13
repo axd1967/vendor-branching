@@ -1,7 +1,12 @@
 # AI agents and vendor branching
 
+This page is WIP.
+
 With the advent of AI, the copy-paste movement has expanded to a next level: copy-pasting via cloning.
-**AI agents need to be taught the vendor branching pattern.** Otherwise the same problem will propagate even more exponentially because forking wil become much more easy, disregarding the fundamental issue: how to deal with the updstream changes. 
+
+**AI agents need to be taught the vendor branching pattern.**
+
+Otherwise the same problem will propagate even more exponentially because forking wil become much more easy, disregarding the fundamental issue: how to deal with the updstream changes. 
 The approaches I often see is to generate patch files that tweak the vendor artefacts. But this amounts to leaving out the vendor branch. What then when upstream changes? Same problem.
 
 https://forum.swissmicros.com/viewtopic.php?f=41&t=4936
