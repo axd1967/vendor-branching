@@ -16,6 +16,16 @@ FIXME: image scaling...
 
 *(sorry for the image scale. KISS help appreciated)*
 
+### Fork it at
+
+1. [GitHub](https://github.com/axd1967/vendor-branching)
+1. [GitLab](https://gitlab.com/axd/vendor-branching)
+1. [Fossil](https://chiselapp.com/user/axd/repository/vendor-branching) (TODO)
+
+You may use vendor branching to do that :-J
+
+TODO: make #1 the vendor, and import as vendor in the others
+
 ## Intro
 
 You copied artefacts from a fancy place to your favourite VCS, tweaked it and now you discover that meanwhile the fancy place updated their code. What now?
