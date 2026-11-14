@@ -59,7 +59,7 @@ First, there are cases of "special interest" that are discussed separately:
 
 Furthermore, the Internet sure is full of examples. Here I list *just a very few* that I came across
 
-*(Upcoming pages: the good, the bad and the ugly)*
+*(TODO: move all this to upcoming pages: the good, the bad and the ugly)*
 
 - https://github.com/tudat-team/tudat-resources/issues/11
 - the "npm left-pad incident" demonstrates what can go wrong when one doesn't vendor: 
