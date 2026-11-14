@@ -55,9 +55,10 @@ First, there are cases of "special interest" that are discussed separately:
 
 1. copy-paste issues in [Stellarium](cases/Stellarium/README.md) started the whole "vendor branching" project after a discussion 
 1. the [SGP4 clones](cases/SGP4/README.md) is a specific example inside Stellarium. I never thought it would become such an expanding oil spill.
-1. [rejig](https://tangentsoft.com/rejig/dir?ci=tip) is imported and then patched into [a subdirectory of the C47 project](https://gitlab.com/rpncalculators/c43/-/tree/master/tools/rejig?ref_type=heads)
+1. a [subdirectory of the C47 project](https://gitlab.com/rpncalculators/c43/-/tree/master/tools/rejig) patches [rejig](https://tangentsoft.com/rejig/dir?ci=tip).
 
 Furthermore, the Internet sure is full of examples. Here I list *just a very few* that I came across
+*(Upcoming pages: the good, the bad and the ugly)*
 
 - https://github.com/tudat-team/tudat-resources/issues/11
 - the "npm left-pad incident" demonstrates what can go wrong when one doesn't vendor: 
@@ -68,9 +69,7 @@ Furthermore, the Internet sure is full of examples. Here I list *just a very few
 - or what happens when one trusts external vendors:
 	- https://www.bleepingcomputer.com/news/security/dev-corrupts-npm-libs-colors-and-faker-breaking-thousands-of-apps
 
-## A solution: package managers
-
-https://en.wikipedia.org/wiki/Package_manager
+## A solution: [package managers](https://en.wikipedia.org/wiki/Package_manager)
 
 Sometimes this can be solved by using package managers that automate the importing and updating of external "stuff" (typically code) and - important - allow to fine tune which version is to be imported.
 
@@ -117,6 +116,7 @@ This is in fact an important version control pattern.
 1. All this needs basic VCS mastery.
 
 See ["HOW-TO"](HOW-TO.md) for the more detailed steps.
+See [GIT](GIT.md) for details concerning Git. (TODO: rewrite this)
 
 ## As a side note: the reverse situation: you are the vendor
 
@@ -142,7 +142,10 @@ Interestingly, one could also use the same concept when "subcontracting" your co
 			1. git can further reduce disk space with a sparse checkout
 1. What barely changes
 	- a vendor drop ingests diffs on a branch first prior to the merge
----
+
+### Some notes
+
+See [NOTES](NOTES.md) (TODO: rework this section)
 
 ## See also
 
@@ -165,6 +168,10 @@ Interestingly, one could also use the same concept when "subcontracting" your co
 	- https://github.com/topics/vendoring
 	- https://github.com/topics/vendors
 - https://github.com/stars/axd1967/lists/vendor-branching
+
+<!-- TODO
+### GitLab
+-->
 
 ### Copy-pasta
 
