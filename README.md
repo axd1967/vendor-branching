@@ -53,11 +53,12 @@ Note that these examples are likely "lost causes"...
 
 First, there are cases of "special interest" that are discussed separately:
 
-1. copy-paste issues in [Stellarium](cases/Stellarium/README.md) started the whole "vendor branching" project after a discussion 
-1. the [SGP4 clones](cases/SGP4/README.md) is a specific example inside Stellarium. I never thought it would become such an expanding oil spill.
-1. a [subdirectory of the C47 project](https://gitlab.com/rpncalculators/c43/-/tree/master/tools/rejig) patches [rejig](https://tangentsoft.com/rejig/dir?ci=tip).
+1. copy-paste issues in [Stellarium](cases/Stellarium/README.md) started the whole "vendor branching" project after [an interesting discussion](https://github.com/Stellarium/stellarium/discussions/1856)
+1. the [SGP4 clones](cases/SGP4/README.md) is a specific example inside Stellarium. I never thought it would become such an expanding oil spill
+1. a [subdirectory of the C47 project](https://gitlab.com/rpncalculators/c43/-/tree/master/tools/rejig) patches [rejig](https://tangentsoft.com/rejig/dir?ci=tip)
 
 Furthermore, the Internet sure is full of examples. Here I list *just a very few* that I came across
+
 *(Upcoming pages: the good, the bad and the ugly)*
 
 - https://github.com/tudat-team/tudat-resources/issues/11
