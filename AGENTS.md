@@ -22,4 +22,5 @@ https://www.reddit.com/r/github/comments/1xto5ge/has_ai_changed_the_way_people_c
 https://youtu.be/cxwfrohYCcc?is=I2UPk8NaiGZTFrzE
 https://agents.md/
 https://en.wikipedia.org/wiki/Vibe_coding
-
+https://en.wikipedia.org/wiki/List_of_AI-assisted_software_development_tools
+https://en.wikipedia.org/wiki/Natural_language_programming
