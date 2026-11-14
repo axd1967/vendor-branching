@@ -1,6 +1,9 @@
 # AI agents and vendor branching
 
-This page is WIP.
+![image](images/xkcd/modern_tools_2x.png)
+> [explainxkcd](https://www.explainxkcd.com/wiki/index.php/2510:_Modern_Tools) (more on AI [here](https://www.explainxkcd.com/wiki/index.php/Category:Artificial_Intelligence))
+
+This page is WIP as this is WISE (What I Started Exploring).
 
 With the advent of AI, the copy-paste movement has expanded to a next level: copy-pasting via cloning.
 

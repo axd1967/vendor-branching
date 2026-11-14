@@ -1,36 +1,20 @@
 # Vendor branching : importing external artifacts without copy-pasta
 
----
+<!--
+<img src="http://....jpg" width="200" height="200" />
+<img src="images/xkcd/dependency_2x.png" width="100" height="100" />
+<img src="images/xkcd/dependency_2x.png" width="2%" height="2%" />
+--!>
 
-Document revisions
+<!-- comments 
+FIXME: image scaling...
+-->
 
-2026-11-13: v1-rc.4
 
-- AI and vendor branching : new page [AGENTS.md](AGENTS.md)
-- use `git switch --orphan` to create vendor branch
-- refine use of `git subtree`
+![image](images/xkcd/dependency_2x.png)
+> Someday ImageMagick will finally break for good and we'll have a long period of scrambling as we try to reassemble civilization from the rubble. [explainxkcd](https://www.explainxkcd.com/wiki/index.php/2347:_Dependency)
 
-2026-11-11: v1-rc.3
-
-- rework further
-- split off
-	- [HOW-TO](HOW-TO.md)
-	- [NOTES](NOTES.md)
-	- [GIT](GIT.md)
-
-2026-11-05: v1-rc.2
-
-- make Stellarium and SGP4 just subprojects
-	- [cases/Stellarium/README.md](cases/Stellarium/README.md)
-	- [cases/SGP4/README.md](cases/SGP4/README.md)
-
-2026-11-05: v1-rc.1
-
-- rewrite; split off
-	- Stellarium related issues to https://github.com/axd1967/stellarium/blob/contrib/docs/vendor-branching/VENDOR_BRANCHING.md
-	- SGP4 to (DRAFT) https://github.com/axd1967/SGP4-vendor-branching
-
----
+*(sorry for the image scale. KISS help appreciated)*
 
 ## Intro
 
@@ -185,4 +169,7 @@ Looks like this is very relevant: SBOM:
 	- https://en.wikipedia.org/wiki/Software_supply_chain
 	- https://en.wikipedia.org/wiki/Supply_chain_attack
 - https://en.wikipedia.org/wiki/Dependency_hell
+
+![image](images/xkcd/519px-disclaimer_2x.png)
+> You say no human would reply to a forum thread about Tom Bombadil by writing and editing hundreds of words of text, complete with formatting, fancy punctuation, and two separate uses of the word 'delve'. Unfortunately for both of us, you are wrong. [explainxkcd](https://www.explainxkcd.com/wiki/index.php/3126:_Disclaimer)
 
