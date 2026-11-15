@@ -12,7 +12,7 @@ With the advent of AI, the copy-paste movement has expanded to a next level: cop
 Otherwise the same problem will propagate even more exponentially because forking wil become much more easy, disregarding the fundamental issue: how to deal with the updstream changes. 
 The approaches I often see is to generate patch files that tweak the vendor artefacts. But this amounts to leaving out the vendor branch. What then when upstream changes? Same problem.
 
-Here are templates:
+Here are unpolished templates:
 
 - [AGENTS](AGENTS.md)
 - [VENDOR](VENDOR.md) (could also be part of AGENTS.md?)
