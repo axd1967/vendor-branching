@@ -19,7 +19,7 @@ For the "why" of the orphan branch, see the [Git page](GIT.md).
 
 ```
 cd <vendor dir>
-rm -rfIv * .*
+git ls-files -z | xargs -0 rm -f
 ```
 
 ## .. vendor drop (vendor uses XXX)

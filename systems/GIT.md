@@ -31,7 +31,8 @@ Note about `git subtree --squash`:
 
 ```
 cd <vendor dir>
-rm -rfIv * .*
+git ls-files -z | xargs -0 rm -f
+
 tar -xzf vendor.tgz
 git add -A
 ```
