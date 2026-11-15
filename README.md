@@ -16,11 +16,7 @@ FIXME: image scaling...
 
 *(sorry for the image scale. KISS help appreciated)*
 
-### Fork it at
-
-1. [GitHub](https://github.com/axd1967/vendor-branching) (this repo acts as a vendor for the others)
-1. [GitLab](https://gitlab.com/axd/vendor-branching) **<-- this one imports the GitHub version as a vendor branch! -->**
-1. [ChiselApp](https://chiselapp.com/user/axd/repository/vendor-branching) (BUSY: vendor the GitHub version via tarball)
+# Fork it [here](FORKING.md)!
 
 *You may use vendor branching to do that :-J*
 
