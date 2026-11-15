@@ -1,6 +1,6 @@
 # Notes
 
-## vendor tags naming
+## vendor tag naming
 
 When working with vendor branches, you will need to choose a tag to define the vendor versions.
 
@@ -8,19 +8,23 @@ When working with vendor branches, you will need to choose a tag to define the v
 1. Sometimes the vendor never creates tags. In that case, start with a variant of an ISO date of today's date (or a vendor date if it is provided somewhere), e.g YYYY-MM-DD_HH-MM
 1. to avoid tag name clashes, choose a format that organises tags and avoids clashes, such as `vendor/[<vendor name>/]<vendor project name>/<vendor tag>`.
 
-Apparently in Git you can add a remote that uses your project as a vendor. Strange. You can also fetch their tags. But the lack of namespaces will throw all tags together. Therefore, I recommend to prefix your own tags with your *product name*:
+If the remote imports your project with `git subtree --no-squash`, you can add that project as a remote that will fuse with your tree. I didn't go deeper, but it might become confusing when you start pushing their tags and branches to ypur public repo. But it is possible.
+An issue that will then appear is that git tags will get mixed.
+Therefore, I recommend to prefix (group) your own tags with e.g. your *product name*:
 
 ```
 git tag <your project>/v/<SEMVER...> <branch>
 ```
 
-This will separate your tags from imported tags.
+This will separate your tags from imported tags. In fact you should always use a separate group for your project tags, in case someone else imports your tags.
 
 ## vendor branch naming
 
 Recommended branch naming: `vendor/[<vendor name>/]<vendor project>`
 
 The "`vendor/`" prefixes are meant to draw the attention to the use of vendor branching and will also help in organise and deconflict refnames.
+
+If there are chances that your branches end up in other repos, consider prefixing with your project name (see tags above).
 
 A similar approach *could* be used for the vendor directory, but is not essential.
 
