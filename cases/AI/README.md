@@ -14,23 +14,36 @@ The approaches I often see is to generate patch files that tweak the vendor arte
 
 Here are templates:
 
-- [AGENTS](AGENTS.md) - 
-- [VENDOR](VENDOR.md) - very interesting...
+- [AGENTS](AGENTS.md)
+- [VENDOR](VENDOR.md) (could also be part of AGENTS.md?)
+
+These files would also be nested in vendor directories?
+
+A second iteration... including package managers when possible
+
+- [AGENTS-2](AGENTS-2.md)
+- [VENDOR-2](VENDOR-2.md)
+
+This is probably only part of the agentic work. I'm still learning.
 
 ----
 
-https://forum.swissmicros.com/viewtopic.php?f=41&t=4936
-https://forum.swissmicros.com/viewtopic.php?f=46&t=4876
+Notes to self: (this list is expanding rapidly)
+
+- https://emergent.sh/news/claude-code-skips-agents-md-1-6-repos-study
+- https://forum.swissmicros.com/viewtopic.php?f=41&t=4936
+- https://forum.swissmicros.com/viewtopic.php?f=46&t=4876
 
 TODO
 
 - https://conventionalbranch.org/
 - https://www.conventionalcommits.org/
+- https://agents.md/ / https://github.com/agentsmd/agents.md
+- https://r2.damoang.net/data/editor/2606/4b9bb99.pdf
 
 - https://www.reddit.com/answers/761b2458-416d-4446-8d5f-1beeee27d405/?q=How+AI+coding+agents+explain+code+changes&source=PDP&ep=pdp_unit&relatedPostId=t3_1nfzhqd&tl=en
 - https://www.reddit.com/r/github/comments/1xto5ge/has_ai_changed_the_way_people_contribute_to/
 - https://youtu.be/cxwfrohYCcc?is=I2UPk8NaiGZTFrzE
-- https://agents.md/
 - https://en.wikipedia.org/wiki/Vibe_coding
 - https://en.wikipedia.org/wiki/List_of_AI-assisted_software_development_tools
 - https://en.wikipedia.org/wiki/Natural_language_programming

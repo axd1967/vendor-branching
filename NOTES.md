@@ -35,8 +35,10 @@ A similar approach *could* be used for the vendor directory, but is not essentia
 	- add instructions to help finding back the source.
 	- Make sure to include any PDF or comparable document that documents the vendor artefact but was not included by the vendor, as well as where that PDF, data file, ... can be found.
 - provide an example CLI command (**especially when using `git subtree`!**) that can easily be pasted in a terminal to update the vendor.
-- turn the VENDOR file into a script
+- consider turning the VENDOR file into a script so that users can run it raher than having to type in commands
 - if possible, include checsum GPG key fingerprint
+- this file also plays an important role for agents. At the time of writing was not aware of the filename convention
+- it is possible that this file will have to describe local modifications in order to help with merge conflicts
 
 ## Binary data files
 
