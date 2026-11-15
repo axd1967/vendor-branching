@@ -8,6 +8,14 @@ When working with vendor branches, you will need to choose a tag to define the v
 1. Sometimes the vendor never creates tags. In that case, start with a variant of an ISO date of today's date (or a vendor date if it is provided somewhere), e.g YYYY-MM-DD_HH-MM
 1. to avoid tag name clashes, choose a format that organises tags and avoids clashes, such as `vendor/[<vendor name>/]<vendor project name>/<vendor tag>`.
 
+Apparently in Git you can add a remote that uses your project as a vendor. Strange. You can also fetch their tags. But the lack of namespaces will throw all tags together. Therefore, I recommend to prefix your own tags with your *product name*:
+
+```
+git tag <your project>/v/<SEMVER...> <branch>
+```
+
+This will separate your tags from imported tags.
+
 ## vendor branch naming
 
 Recommended branch naming: `vendor/[<vendor name>/]<vendor project>`
