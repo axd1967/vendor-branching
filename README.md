@@ -26,7 +26,7 @@ FIXME: image scaling...
 
 Done: #1 is vendor for #2
 
-Still TODO: make #1 the vendor of #3 :-J
+BUSY: make #1 the vendor of #3 :-J
 
 ## Introduction
 

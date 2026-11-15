@@ -82,6 +82,12 @@ switch main
 merge task branch
 ```
 
+The orphan vendor branch is now merged with your project's branch:
+![image](../images/orphan.png)
+
+1 = main branch
+2 = orphan/vendor branch
+
 # Various Git notes
 
 ## What about Git submodules?

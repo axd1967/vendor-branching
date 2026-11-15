@@ -2,7 +2,7 @@ How to implement vendor branching with various VCS tools
 
 1. [AGENTS](AGENTS.md) (WIP)
 1. [Git](GIT.md)
-1. Fossil (TODO)
+1. [Fossil](FOSSIL.md) (busy)
 1. CVS!
 1. SVN?
 1. ClearCase?

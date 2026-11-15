@@ -13,6 +13,8 @@ create (if possible orphan) vendor branch
 switch
 ```
 
+For the "why" of the orphan branch, see the [Git page](GIT.md).
+
 ## . empty vendor directory
 
 ```
