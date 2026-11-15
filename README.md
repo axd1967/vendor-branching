@@ -20,7 +20,7 @@ FIXME: image scaling...
 
 1. [GitHub](https://github.com/axd1967/vendor-branching)
 1. [GitLab](https://gitlab.com/axd/vendor-branching) **<-- this one imports the GitHub version as a vendor branch! -->**
-1. [ChiselApp](https://chiselapp.com/user/axd/repository/vendor-branching) (TODO)
+1. [ChiselApp](https://chiselapp.com/user/axd/repository/vendor-branching) (BUSY)
 
 *You may use vendor branching to do that :-J*
 
