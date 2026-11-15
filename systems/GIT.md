@@ -5,7 +5,8 @@ The following sequence is almost identical for creating as well as updating a ve
 ## . switch to vendor branch
 
 ```
-git switch --orphan=<vendor branch> # your project directory will become empty
+git switch --orphan=<vendor branch> 
+# at this point your project directory is now empty
 
 # only for the first commit
 git commit --allow-empty -m "create vendor XXX"
@@ -14,20 +15,19 @@ git commit --allow-empty -m "create vendor XXX"
 - The branch is initially unrelated to your own repository, therefore make it an orphan.
 - You need an empty commit.
 
-## .. vendor drop (vendor uses Git)
+## .. vendor drop - vendor uses Git
 
 ```
-git subtree add / pull --prefix=<path to vendor dir> <vendor URL> <vendor Git ref>
+git subtree add (when creating) / pull (when updating) --prefix=<path to vendor dir> <vendor URL> <vendor Git ref>
 ```
 
-Note that `git subtree` does not remember the vendor information, so that must be recorded in the VENDOR file
+Note that `git subtree` does not remember the vendor information, so that must be recorded in the upcoming VENDOR file. Also, '.' cannot be used as prefix.
 Note about `git subtree --squash`:
 
 - avoid it when you intend to contribute back to the vendor. *We all want that, right?* 
 - use it to reduce disk space
 
-
-## .. vendor drop (vendor does not use Git)
+## .. vendor drop - vendor does not use Git
 
 ```
 cd <vendor dir>
@@ -39,8 +39,11 @@ git add -A
 ## . commit & tag the vendor branch
 
 ```
+# only if you didn't use `git subtree`:
 git commit -m "import vendor XXX version YYY"
-git tag <vendor branch> <vendor tag>
+
+# tag
+git tag <vendor tag> <vendor branch>
 ```
 
 ## . switch to task branch
@@ -52,8 +55,11 @@ git switch taskbranch
 ## . merge vendor branch
 
 ```
-git merge --allow-unrelated-histories --no-ff <vendor branch>
+git merge --allow-unrelated-histories --no-ff <vendor tag>
 ```
+
+`--allow-unrelated-histories` otherwise first vendor merge won't work.
+Use the vendor tag. It makes the vendor drop explicit.
 
 ## . update VENDOR file
 

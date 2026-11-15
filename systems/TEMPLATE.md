@@ -27,7 +27,7 @@ rm -rfIv * .*
 git subtree add / pull --prefix=<path to vendor dir> <vendor URL> <vendor Git ref>
 ```
 
-## .. vendor drop (vendor does not use XXX)
+## .. ALIEN vendor drop (vendor does not use XXX)
 
 ```
 tar -xzf vendor.tgz
@@ -55,10 +55,10 @@ handle conflicts
 
 ```
 
-## . update VENDOR file
+## . update VENDOR file in the vendor directory
 
 ```
-edit VENDOR.md
+edit <vendor dir path>/VENDOR.md
 ```
 
 `VENDOR.md` could also be a `VENDOR.sh` file that executes a vendor drop.

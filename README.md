@@ -19,12 +19,13 @@ FIXME: image scaling...
 ### Fork it at
 
 1. [GitHub](https://github.com/axd1967/vendor-branching)
-1. [GitLab](https://gitlab.com/axd/vendor-branching) <!-- (actually vendor branching the GitHub version) -->
+1. [GitLab](https://gitlab.com/axd/vendor-branching) **<-- this one imports the GitHub version as a vendor branch! -->**
 1. [ChiselApp](https://chiselapp.com/user/axd/repository/vendor-branching) (TODO)
 
 *You may use vendor branching to do that :-J*
 
-Still TODO: make #1 the vendor, and import as vendor in the others :-J
+Done: #1 is vendor for #2
+Still TODO: make #1 the vendor of #3 :-J
 
 ## Introduction
 
