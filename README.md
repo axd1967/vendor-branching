@@ -18,15 +18,11 @@ FIXME: image scaling...
 
 ### Fork it at
 
-1. [GitHub](https://github.com/axd1967/vendor-branching)
+1. [GitHub](https://github.com/axd1967/vendor-branching) (this repo acts as a vendor for the others)
 1. [GitLab](https://gitlab.com/axd/vendor-branching) **<-- this one imports the GitHub version as a vendor branch! -->**
-1. [ChiselApp](https://chiselapp.com/user/axd/repository/vendor-branching) (BUSY)
+1. [ChiselApp](https://chiselapp.com/user/axd/repository/vendor-branching) (BUSY: vendor the GitHub version via tarball)
 
 *You may use vendor branching to do that :-J*
-
-Done: #1 is vendor for #2
-
-BUSY: make #1 the vendor of #3 :-J
 
 ## Introduction
 
