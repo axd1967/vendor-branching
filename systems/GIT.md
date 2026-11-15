@@ -84,9 +84,6 @@ merge task branch
 
 # Various Git notes
 
-## a Git trick to go to to GITROOT. Needed?
-cd `git rev-parse --show-toplevel` 
-
 ## What about Git submodules?
 
 Disclaimer: Personally I have never used them, and the Internet is not recomforting. But they do deserve a study.
@@ -109,6 +106,7 @@ To expand further.
 
 Git tips (TO CONFIRM and maybe to move out of this file):
 
+- a Git trick to go to to GITROOT:  cd `git rev-parse --show-toplevel` 
 - gitignore rules should relate to project files only, not developer habits. e.g. a `[Dd]esktop.ini` pattern does belongs in `~/.gitignore`
 - check your current global/local/worktree whitespace handling
 ```

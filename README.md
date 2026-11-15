@@ -25,6 +25,7 @@ FIXME: image scaling...
 *You may use vendor branching to do that :-J*
 
 Done: #1 is vendor for #2
+
 Still TODO: make #1 the vendor of #3 :-J
 
 ## Introduction

@@ -52,7 +52,6 @@ switch taskbranch
 ```
 merge vendor branch
 handle conflicts
-
 ```
 
 ## . update VENDOR file in the vendor directory
