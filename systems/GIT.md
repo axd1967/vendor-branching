@@ -61,6 +61,8 @@ git merge --allow-unrelated-histories --no-ff <vendor tag>
 `--allow-unrelated-histories` otherwise first vendor merge won't work.
 Use the vendor tag. It makes the vendor drop explicit.
 
+Notice how the log shows how the orphan branch rejoined the main branch. This can best be seen in [GitLab](https://gitlab.com/axd/vendor-branching/-/network/master?ref_type=heads).
+
 ## . update VENDOR file
 
 ```
@@ -81,12 +83,6 @@ hack away
 switch main
 merge task branch
 ```
-
-The orphan vendor branch is now merged with your project's branch:
-![image](../images/orphan.png)
-
-1 = main branch
-2 = orphan/vendor branch
 
 # Various Git notes
 
