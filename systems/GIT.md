@@ -95,6 +95,7 @@ Submodules are a bit hairy to deal with; the concept feels heavy.
 
 To expand further.
 
+- https://stackoverflow.com/questions/31871888/what-goes-wrong-when-using-git-worktree-with-git-submodules
 - note that the Git SCM book also explains [submodules](https://git-scm.com/book/en/v2/Git-Tools-Submodules) as a solution: *"The issue with copying the code into your own project [without using submodules] is that any custom changes you make are difficult to merge when upstream changes become available."*.
 - https://git-scm.com/docs/gitsubmodules
 - https://git-scm.com/docs/git-submodule
