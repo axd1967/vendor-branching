@@ -1,8 +1,30 @@
 # Notes
 
-The more gritty things...
+## vendor tags naming
 
-*Note: Git is used here, but other VCS provide similar possibilities.*
+When working with vendor branches, you will need to choose a tag to define the vendor versions.
+
+1. If the vendor provides a clean tag such as `v1.0`, start off it
+1. Sometimes the vendor never creates tags. In that case, start with a variant of an ISO date of today's date (or a vendor date if it is provided somewhere), e.g YYYY-MM-DD_HH-MM
+1. to avoid tag name clashes, choose a format that organises tags and avoids clashes, such as `vendor/[<vendor name>/]<vendor project name>/<vendor tag>`.
+
+## vendor branch naming
+
+Recommended branch naming: `vendor/[<vendor name>/]<vendor project>`
+
+The "`vendor/`" prefixes are meant to draw the attention to the use of vendor branching and will also help in organise and deconflict refnames.
+
+A similar approach *could* be used for the vendor directory, but is not essential.
+
+## about the VENDOR file
+
+- Add and commit a ``VENDOR.md`` file to ``vendor/CELESTRAK/`` that contains relevant **metadata**
+	- consider including the keyword "VENDOR" somewhere so that it can also be grepped if needed.
+	- add instructions to help finding back the source.
+	- Make sure to include any PDF or comparable document that documents the vendor artefact but was not included by the vendor, as well as where that PDF, data file, ... can be found.
+- provide an example CLI command (**especially when using `git subtree`!**) that can easily be pasted in a terminal to update the vendor.
+- turn the VENDOR file into a script
+- if possible, include checsum GPG key fingerprint
 
 ## Binary data files
 
@@ -21,6 +43,20 @@ Other example: XML schema
 Sometimes a format is accompanied by a metadata section describing the format of the data. This metadata is an important artefact to commit to an vendor branch. *Changes to the schema will be readily identified as diffs in the vendor branch. That's why such files must be ingested too.*
 
 Sometimes, conversion routines need to be written or updated so that external data fits the project; maybe the data oitself is not needed, but only the generated data? These routines do not belong in the vendor branch, but in your project. 
+
+### How to deal with binaries
+
+If your patch adds/changes binary files, then supply those separately.
+
+TO CONFIRM: edit the patch file, remove the references to binaries(?), and mention this to the vendor.
+
+## participating in the vendor project
+
+1. never modify the vendor branch
+1. contribution branch always branches off a vendor tag!
+1. you will have to merge main to contribution branch in order to run tests
+1. send a patch to the vendor. remember to specify the vendor tag otherwise the vendor might not be able to handle your patch.
+1. merge the contribution branch to main
 
 ## Patching
 
@@ -49,7 +85,9 @@ The vendor will apply your patch (probably via a branch) using the classical `pa
 patch -p1 < patchfile
 ```
 
-### How to deal with binaries
+Sometimes `git bundle` can be helpful.
+
+### How to include binaries with patches
 
 If your patch adds/changes binary files, then supply those separately.
 
@@ -63,12 +101,11 @@ The vendor will then ingest that in a branch (actually they are doing a kind of 
 ```
 git archive --format=tgz --output=<tarfile>.tgz <head>:<path to vendor directory> [path]
 ```
-
 This creates a tgz file (run `git archive --list` for the formats) of the commit `<head>` relative to the vendor directory dirname.
 
 Note that this even works for a single vendor file, should you have chosen not to use a directory for the vendor artefact.
 
-## bundle the vendor
+### bundle the vendor
 
 Sometimes, it might be preferrable to convert a Git repo to a `git archive` in order to perform the vendor drop.
 Explain?
@@ -114,14 +151,6 @@ This also applies for cases where explanatory/example (pseudo) sourcecode is off
 
 In such a case, there is no need to rewrite the artefacts (see previous item).
 
-## When conflicts are no longer manageable
-
-TODO
-
-In some cases, merging vendor updates may become too difficult if not impossible. Welcome to merge hell? Nevertheless, vendor drops will continue to provide the means to port changes, by allowing the developer to study at least what changed in the vendor branch, and apply those changes ... manually.
-
-``git rerere`` might become helpful.
-
 ## Version information in vendor file/directory paths
 
 Sometimes, packages deflate to directories/files with path names containing version information. An example is the FAQ file of [this landscape](http://www.alienbasecamp.com/Stellarium/sun.htm).
@@ -137,6 +166,7 @@ When modifying vendor code, stick to the vendor coding style/conventions. Rewrit
 
 ## To be evaluated:
 
+- how to convert existing (modified or not) code to a vendor branch`
 - https://stackoverflow.com/ai-assist/shared/4adf31b5-4c07-4b3b-9fc1-61d89536a4b7
 	- impact on diff
 - a [rebasing vendor branch workflow](https://talesfromthearmchair.net/a-rebasing-vendor-branch-workflow-for.html)

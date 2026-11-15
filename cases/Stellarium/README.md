@@ -1,6 +1,6 @@
 # Vendor artifacts in Stellarium
 
-This document lists vendor branching issues in Stellarium.
+This document discusses vendor branching issues in Stellarium.
 
 1. the recipe for a generic vendor branch (VB) strategy is explained [here](../../README.md).
 1. SGP4 related VB aspects are dealt with [here](../SGP4/README.md).

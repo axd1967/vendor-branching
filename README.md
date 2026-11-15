@@ -19,14 +19,14 @@ FIXME: image scaling...
 ### Fork it at
 
 1. [GitHub](https://github.com/axd1967/vendor-branching)
-1. [GitLab](https://gitlab.com/axd/vendor-branching)
+1. [GitLab](https://gitlab.com/axd/vendor-branching) <!-- (actually vendor branching the GitHub version) -->
 1. [ChiselApp](https://chiselapp.com/user/axd/repository/vendor-branching) (TODO)
 
-You may use vendor branching to do that :-J
+*You may use vendor branching to do that :-J*
 
-TODO: make #1 the vendor, and import as vendor in the others
+Still TODO: make #1 the vendor, and import as vendor in the others :-J
 
-## Intro
+## Introduction
 
 You copied artefacts from a fancy place to your favourite VCS, tweaked it and now you discover that meanwhile the fancy place updated their code. What now?
 Artefacts can be source code, data files, PDF files, supporting documentation...
@@ -47,19 +47,7 @@ The approach looks daunting, but that is only appearance.
 
 The external (source) version of such artifacts will often continue to evolve, but these modifications obviously will not be magically reflected in the project repository, thus *sometimes, if not often* leading to artifacts slowly getting totally outdated (hence the term "[code rot](https://en.wikipedia.org/wiki/Software_rot)").
 
-## Examples
-
-Note that these examples are likely "lost causes"...
-
-First, there are cases of "special interest" that are discussed separately:
-
-1. copy-paste issues in [Stellarium](cases/Stellarium/README.md) started the whole "vendor branching" project after [an interesting discussion](https://github.com/Stellarium/stellarium/discussions/1856)
-1. the [SGP4 clones](cases/SGP4/README.md) is a specific example inside Stellarium. I never thought it would become such an expanding oil spill
-1. a [subdirectory of the C47 project](https://gitlab.com/rpncalculators/c43/-/tree/master/tools/rejig) patches [rejig](https://tangentsoft.com/rejig/dir?ci=tip)
-
-Furthermore, the Internet sure is full of examples. Here I list *just a very few* that I came across
-
-*(TODO: move all this to upcoming pages: the good, the bad and the ugly)*
+## What can go wrong
 
 - https://github.com/tudat-team/tudat-resources/issues/11
 - the "npm left-pad incident" demonstrates what can go wrong when one doesn't vendor: 
@@ -70,6 +58,16 @@ Furthermore, the Internet sure is full of examples. Here I list *just a very few
 - or what happens when one trusts external vendors:
 	- https://www.bleepingcomputer.com/news/security/dev-corrupts-npm-libs-colors-and-faker-breaking-thousands-of-apps
 
+## Cases of special interest
+
+First, there are cases of "special interest" that are discussed separately:
+
+1. copy-paste issues in [Stellarium](cases/Stellarium/README.md) started the whole "vendor branching" project after [an interesting discussion](https://github.com/Stellarium/stellarium/discussions/1856)
+1. the [SGP4 copy-pasting](cases/SGP4/README.md) is a specific example inside Stellarium. I never thought it would become such an expanding oil spill
+1. a [subdirectory of the C47 project](https://gitlab.com/rpncalculators/c43/-/tree/master/tools/rejig) imports and then patches [rejig](https://tangentsoft.com/rejig/dir?ci=tip)
+
+More examples can be found [here](EXAMPLES.md).
+
 ## A solution: [package managers](https://en.wikipedia.org/wiki/Package_manager)
 
 Sometimes this can be solved by using package managers that automate the importing and updating of external "stuff" (typically code) and - important - allow to fine tune which version is to be imported.
@@ -78,7 +76,7 @@ Python's `pip -e` is a great example of this. Modifying the vendor code [is less
 
 An advanced example is [Activestate](https://www.activestate.com/platform/supported-languages/python).
 
-Artefacts that can be managed by package managers are not discussed here. An inconvenience of package managers might be that local modifications might be more difficult to manage. This is precisely what vendor branching has been designed for.
+Artefacts that can be managed by package managers are not discussed here. An inconvenience of package managers might be that *local modifications* might be more difficult to manage. This is precisely what vendor branching has been designed for.
 
 And sometimes there will be no package manager provided with the artefact. Often, the artefacts will live in zip or PDF files or HTML pages...
 
@@ -96,7 +94,7 @@ The concept already exists:
 - And [SVN](https://subversion.apache.org/blog/) (under ["Vendor Branches - Chapter 4. Branching and Merging"](https://svnbook.red-bean.com/en/1.8/svn.advanced.vendorbr.html)) is almost a reference.
 - [FreeBSD](https://github.com/freebsd/freebsd-doc/blob/main/documentation/content/en/articles/committers-guide/_index.adoc#54-vendor-imports-with-git) also explains the Vendor Branch concept (BTW - it uses `git subree`).
 
-Importing external artifacts requires a specific (and in this case a *simple* - believe me, it is not rocket science - as well as generic) approach: the **Vendor Branch** approach. The proposed Vendor Branch approach is KISS: *simple to apply to novice programmers*. By the way, the approach is valid in any VCS, such as SVN (where it seems to have emerged), Git, Mercurial, ClearCase, Fossil, TFS, CVS (where it already exists), you name it.
+Importing external artifacts requires a specific (and in this case a *simple* - believe me, it is not rocket science - as well as generic) and approach: the **Vendor Branch** approach. The proposed approach is KISS: *simple to apply to novice programmers*. By the way, the approach is valid in any VCS, such as SVN, Git, Mercurial, ClearCase, Fossil, TFS, CVS (where it already exists), you name it.
 
 Importing external artefacts in vendor branches will also provide insight in what changed in those artefacts, just by inspecting the "diff" between successive vendor versions. Normally such changes should also be announced by the vendor.
 
@@ -104,20 +102,16 @@ This is in fact an important version control pattern.
 
 ## The essential steps
 
-1. Track external changes in vendor branches
+1. Track external changes in vendor branches by successive imports and vendor tags
 1. Do not modify anything in vendor branches
 1. Updates in successive vendor artefact versions can be detected via diffs
 1. ... and merged to local branches (and finally end up in your project's `main` branch)
-1. Vendor tags track vendor releases
-1. A local file tracks metadata about the vendor artefacts so that the vendor artefacts can always be found (until they vanish).
-1. SBOM: this file should also contain checksum and GPG key fingerprint of the vendor, plus how to check it
-1. Local adaptations are likely and are applied in local branches (i.e. after merging the vendor branch).
-1. Later vendor releases are imported in the vendor branch and then merged. If local changes were done, those might then generate conflicts that need to be resolved. (`git rerere` could be very helpoful, BTW).
-1. Feel for contributing to the vendor code? Branch off the vendor branch, send the patch and merge locally.
+1. **... where changes can be applied.**
+1. A *local* file (or script) tracks metadata about the vendor artefacts so that the vendor artefacts can always be found (until they vanish).
+1. Feel for contributing to the vendor code? Branch off the vendor branch, send the patch and merge locally. (Remember that the next vendor drop might generate conflicts)
 1. All this needs basic VCS mastery.
 
-See ["HOW-TO"](HOW-TO.md) for the more detailed steps.
-See [GIT](GIT.md) for details concerning Git. (TODO: rewrite this)
+See the page [systems](systems/README.md) for the more detailed steps using various VCS.
 
 ## As a side note: the reverse situation: you are the vendor
 
@@ -134,8 +128,8 @@ Interestingly, one could also use the same concept when "subcontracting" your co
 	- no manual patching, no need for separate patch scripts
 	- no dependency on the vendor (or even a network connection)
 1. Inconveniences
+	- the vendor creation might much more space than needed if the vendor drop is huge
 	- the repo will grow a bit larger
-	- the vendor creation might much more space than needed if the vendor is huge
 		- for example, one simple test shows that (using Git and Fossil as a case)
 			1. a bare Fossil repo (=SQLite format) file (e.g. [rejig](https://tangentsoft.com/rpn/dir?ci=trunk)) is about ~6Mb (2026-11)
 			1. `fossil open` inflates to 17M
@@ -144,11 +138,9 @@ Interestingly, one could also use the same concept when "subcontracting" your co
 1. What barely changes
 	- a vendor drop ingests diffs on a branch first prior to the merge
 
-### Some notes
-
-See [NOTES](NOTES.md) (TODO: rework this section)
-
 ## See also
+
+- The [NOTES](NOTES.md) page
 
 ### vendor branching concept
 
@@ -172,6 +164,7 @@ See [NOTES](NOTES.md) (TODO: rework this section)
 
 <!-- TODO
 ### GitLab
+### Fossil
 -->
 
 ### Copy-pasta
@@ -181,13 +174,14 @@ See [NOTES](NOTES.md) (TODO: rework this section)
 - "*[copy-paste is evil](https://stackoverflow.com/questions/2490884/why-is-copy-and-paste-of-code-dangerous)*"
 - https://www.cisa.gov/resources-tools/resources/product-security-bad-practices: _"Cache copies of all open-source dependencies within the manufacturer’s own build systems and do not update products or customer systems directly from unverified public sources."_ (Dead link, see instead https://github.com/cisagov/bad-practices/discussions/101)
 
-## TODO
+## still TODO
 
-Looks like this is very relevant: SBOM: 
-	- https://en.wikipedia.org/wiki/Software_supply_chain
-	- https://en.wikipedia.org/wiki/Supply_chain_attack
+- https://en.wikipedia.org/wiki/Software_supply_chain
+- https://en.wikipedia.org/wiki/Supply_chain_attack
+
 - https://en.wikipedia.org/wiki/Dependency_hell
 
 ![image](images/xkcd/519px-disclaimer_2x.png)
+
 > You say no human would reply to a forum thread about Tom Bombadil by writing and editing hundreds of words of text, complete with formatting, fancy punctuation, and two separate uses of the word 'delve'. Unfortunately for both of us, you are wrong. [explainxkcd](https://www.explainxkcd.com/wiki/index.php/3126:_Disclaimer)
 
