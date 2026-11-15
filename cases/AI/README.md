@@ -1,6 +1,6 @@
 # AI agents and vendor branching
 
-![image](../images/xkcd/modern_tools_2x.png)
+![image](../../images/xkcd/modern_tools_2x.png)
 > [explainxkcd](https://www.explainxkcd.com/wiki/index.php/2510:_Modern_Tools) (more on AI [here](https://www.explainxkcd.com/wiki/index.php/Category:Artificial_Intelligence))
 
 This page is WIP as this is WISE (What I Started Exploring).
@@ -11,6 +11,13 @@ With the advent of AI, the copy-paste movement has expanded to a next level: cop
 
 Otherwise the same problem will propagate even more exponentially because forking wil become much more easy, disregarding the fundamental issue: how to deal with the updstream changes. 
 The approaches I often see is to generate patch files that tweak the vendor artefacts. But this amounts to leaving out the vendor branch. What then when upstream changes? Same problem.
+
+Here are templates:
+
+- [AGENTS](AGENTS.md) - 
+- [VENDOR](VENDOR.md) - very interesting...
+
+----
 
 https://forum.swissmicros.com/viewtopic.php?f=41&t=4936
 https://forum.swissmicros.com/viewtopic.php?f=46&t=4876

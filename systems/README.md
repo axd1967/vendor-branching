@@ -1,6 +1,6 @@
 How to implement vendor branching with various VCS tools
 
-1. [AGENTS](AGENTS.md) (WIP)
+1. [AI](cases/AI/README.md) (busy)
 1. [Git](GIT.md)
 1. [Fossil](FOSSIL.md) (busy)
 1. CVS!
