@@ -1,8 +1,11 @@
 # Vendor Branching using XXX
 
-<!-- Replace XXX with your VCS name: Git, CVS, SVN, ... -->
+<!-- 
+	1. copy as a new page XXX.md
+	2. replace XXX with your favourite VCS name: CVS, SVN, ... 
+-->
 
-The following sequence is almost identical for creating as well as updating a vendor.
+The following sequence is almost identical for creating as well as updating a vendor and could serve as a compact generic checlist too.
 
 <!-- remove sections that do not apply --> 
 
@@ -24,12 +27,12 @@ git ls-files -z | xargs -0 rm -f
 
 ## .. vendor drop (vendor uses XXX)
 
-<!-- using Git as example. Maybe XXX does not have similar provision -->
+<!-- using `git subtree` as example. Maybe XXX does not have similar provision -->
 ```
 git subtree add / pull --prefix=<path to vendor dir> <vendor URL> <vendor Git ref>
 ```
 
-## .. ALIEN vendor drop (vendor does not use XXX)
+## .. "ALIEN" vendor drop (vendor does not use XXX)
 
 ```
 tar -xzf vendor.tgz

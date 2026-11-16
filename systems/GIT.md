@@ -5,14 +5,14 @@ The following sequence is almost identical for creating as well as updating a ve
 ## . switch to vendor branch
 
 ```
-git switch --orphan=<vendor branch> 
-# at this point your project directory is now empty
+git switch [--orphan=]<vendor branch> 
+# if you used the orphan option tro create the branch, you will notice that at this point your project directory is now empty
 
 # only for the first commit
 git commit --allow-empty -m "create vendor XXX"
 ```
 
-- The branch is initially unrelated to your own repository, therefore make it an orphan.
+- The vendor branch is initially unrelated to your own repository, therefore it must start as an orphan.
 - You need an empty commit.
 
 ## .. vendor drop - vendor uses Git
@@ -27,7 +27,7 @@ Note about `git subtree --squash`:
 - avoid it when you intend to contribute back to the vendor. *We all want that, right?* 
 - use it to reduce disk space
 
-## .. vendor drop - vendor does not use Git
+## .. ALIEN vendor drop - vendor does not use Git
 
 ```
 cd <vendor dir>
@@ -62,7 +62,7 @@ git merge --allow-unrelated-histories --no-ff <vendor tag>
 `--allow-unrelated-histories` otherwise first vendor merge won't work.
 Use the vendor tag. It makes the vendor drop explicit.
 
-Notice how the log shows how the orphan branch rejoined the main branch. This can best be seen in [GitLab](https://gitlab.com/axd/vendor-branching/-/network/master?ref_type=heads).
+Notice how the log shows how the orphan branch rejoined the main branch. This can best be seen in the [network page of the GitLab fork](https://gitlab.com/axd/vendor-branching/-/network/master?ref_type=heads).
 
 ## . update VENDOR file
 
@@ -155,6 +155,7 @@ See also
 	- an interesting and extensive discussion of alternatives: makes a comparison with submodule, subtree, brettlangdon (which is dead?)
 	- can the `subdir` option deal with large vendors?
 	- maybe too complicated?
+	- **but... it looks orphaned. a typical (and ironic) issue**
 - git lfs
 - `git subtree`:
 	- https://apenwarr.ca/log/20090430-a-new-alternative-to-git-submodules-git-subtree

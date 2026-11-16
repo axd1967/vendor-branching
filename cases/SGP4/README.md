@@ -5,15 +5,13 @@ From https://orbitalradar.com/glossary/sgp4:
 
 See also [Wikipedia](https://en.wikipedia.org/wiki/Simplified_perturbations_models)
 
-This project tries to create an inventory of SGP4 forks and propose a Simple and Sound Software Engineering Approach to avoid the consequences of bluntly copy-pasting or re-inventing code.
+The picture that appears is that many developers try to re-invent the warm water (or copy-paste): see
 
-Because the picture that appears is that many developers try to re-invent the warm water (or copy-paste): see
+- https://github.com/CelesTrak/fundamentals-of-astrodynamics/discussions/173
+- https://github.com/DigitalArsenal/spacedatastandards.org/issues/5
+- https://github.com/DigitalArsenal/spacedatastandards.org/issues/3
 
-	- https://github.com/CelesTrak/fundamentals-of-astrodynamics/discussions/173
-	- https://github.com/DigitalArsenal/spacedatastandards.org/issues/5
-	- https://github.com/DigitalArsenal/spacedatastandards.org/issues/3
-
-**As a result, new users are overwhelmed by implementations that try to call themselve a reference.**
+**As a result, new developers are overwhelmed by implementations that try to call themselve a reference.** Which one should we use? Shall we fork *that one*?
 
 Forks are flooding the Internet and each vendor tries to position them as *THE* source. They create a dependency that could be fatal once they disappear. (See the [KIK case](../../README.md).)
 

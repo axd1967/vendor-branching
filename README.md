@@ -54,7 +54,9 @@ The external (source) version of such artifacts will often continue to evolve, b
 
 ## Cases of special interest
 
-First, there are cases of "special interest" that are discussed separately:
+First, there are cases that I'm personally interested in, and are discussed separately:
+
+*Don't take it personally: the issue is widespread and totally forgiveable, as the pattern is seldom taken into consideration when a solution is needed for this typical problem.*
 
 1. copy-paste issues in [Stellarium](cases/Stellarium/README.md) started the whole "vendor branching" project after [an interesting discussion](https://github.com/Stellarium/stellarium/discussions/1856)
 1. the [SGP4 copy-pasting](cases/SGP4/README.md) is a specific example inside Stellarium. I never thought it would become such an expanding oil spill

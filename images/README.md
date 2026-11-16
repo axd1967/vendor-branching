@@ -1,4 +1,3 @@
-
 ![image](xkcd/dependencies.png)
 > The prereqs for CPSC 357, the class on package management, are CPSC 432, CPSC 357, and glibc2.5 or later. [explainxkcd](https://www.explainxkcd.com/wiki/index.php/754:_Dependencies)
 

@@ -6,18 +6,23 @@ Feel free to suggest more examples. I'm specially looking for GOOD examples.
 
 Projects that use the Vendor Branching approach.
 
-### vendor-branching
+- https://gitlab.com/axd/vendor-branching ;-J
 
 ## "tooled"
 
 Projects that identified the vb issue and chose to delegate vendoring to tools *(other than package managers)*.
+- Projects using https://github.com/thejoshwolfe/git-vendor
 
 ## bad
 
 Examples how not to deal with vendor artefacts.
 Note that these and following examples are likely "lost causes"... Because it is not easy to change a project once a direction has been chosen.
 
+- https://github.com/Stellarium/stellarium/discussions/1856
+
 ## ugly
 
-The worst category. To be defined...
+The worst category. To be defined... 
+
+- Maybe projects that copy-paste without even mentioning the source? That use sources with unknown provenance?
 
