@@ -2,7 +2,7 @@
 
 You know what forking means. So why a separate page for this?
 
-Because my own forks apply the vendor branching pattern.
+Because my own "forks" apply the vendor branching pattern.
 
 ### Forks
 

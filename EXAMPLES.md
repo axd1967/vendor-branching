@@ -1,5 +1,7 @@
 # Examples
 
+(Projects that came on the radar, in the order in which we became aware of them)
+
 Feel free to suggest more examples. I'm specially looking for GOOD examples.
 
 ## good
@@ -12,6 +14,10 @@ Projects that use the Vendor Branching approach.
 
 Projects that identified the vb issue and chose to delegate vendoring to tools *(other than package managers)*.
 - Projects using https://github.com/thejoshwolfe/git-vendor
+
+## "copy-pasta under the hood"
+
+These still copy-paste or clone etc but the artefacts are not stored in the repo.
 
 ## bad
 

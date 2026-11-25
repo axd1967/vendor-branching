@@ -14,8 +14,6 @@ FIXME: image scaling...
 ![image](images/xkcd/dependency_2x.png)
 > Someday ImageMagick will finally break for good and we'll have a long period of scrambling as we try to reassemble civilization from the rubble. [explainxkcd](https://www.explainxkcd.com/wiki/index.php/2347:_Dependency)
 
-*(sorry for the image scale. KISS help appreciated)*
-
 # Fork it [here](FORKING.md)!
 
 *You may use vendor branching to do that :-J*
@@ -133,6 +131,11 @@ Interestingly, one could also use the same concept when "subcontracting" your co
 			1. git can further reduce disk space with a sparse checkout
 1. What barely changes
 	- a vendor drop ingests diffs on a branch first prior to the merge
+
+## Other options, to discuss
+
+- clone the vendor into a separate repository
+- the monorepo approach
 
 ## See also
 
