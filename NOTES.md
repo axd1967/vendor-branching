@@ -8,7 +8,7 @@ When working with vendor branches, you will need to choose a tag to define the v
 1. Sometimes the vendor never creates tags. In that case, start with a variant of an ISO date of today's date (or a vendor date if it is provided somewhere), e.g YYYY-MM-DD_HH-MM
 1. to avoid tag name clashes, choose a format that organises tags and avoids clashes, such as `vendor/[<vendor name>/]<vendor project name>/<vendor tag>`.
 
-If the remote imports your project with `git subtree --no-squash`, you can add that project as a remote that will fuse with your tree. I didn't go deeper, but it might become confusing when you start pushing their tags and branches to ypur public repo. But it is possible.
+If the remote imports your project with `git subtree --no-squash`, you can add that project as a remote that will fuse with your tree. I didn't go deeper, but it might become confusing when you start pushing their tags and branches to your public repo. But it is possible.
 An issue that will then appear is that git tags will get mixed.
 Therefore, I recommend to prefix (group) your own tags with e.g. your *product name*:
 
@@ -20,31 +20,41 @@ This will separate your tags from imported tags. In fact you should always use a
 
 ## vendor branch naming
 
-Recommended branch naming: `vendor/[<vendor name>/]<vendor project>`
+Suggested vendor branch naming: 
+
+`vendor/[<vendor name>/]<vendor project>/source`
 
 The "`vendor/`" prefixes are meant to draw the attention to the use of vendor branching and will also help in organise and deconflict refnames.
+The `/source` suffix allows to also add conttributions branches (see next paragraph).
 
 If there are chances that your branches end up in other repos, consider prefixing with your project name (see tags above).
 
 A similar approach *could* be used for the vendor directory, but is not essential.
 
+## vendor contributions
+
+Suggested vendor contribution branch naming: 
+
+`vendor/[<vendor name>/]<vendor project>/contrib/<contribution name>`
+
 ## about the VENDOR file
 
-- Add and commit a ``VENDOR.md`` file to ``vendor/CELESTRAK/`` that contains relevant **metadata**
-	- consider including the keyword "VENDOR" somewhere so that it can also be grepped if needed.
-	- add instructions to help finding back the source.
-	- Make sure to include any PDF or comparable document that documents the vendor artefact but was not included by the vendor, as well as where that PDF, data file, ... can be found.
+- Add and commit a ``VENDOR.md`` file to the merged vendor directory that contains relevant **metadata**
+	- consider including the keyword "VENDOR" somewhere so that it can also be grepped if needed
+	- add instructions to help finding back the source
+	- Make sure to include any PDF or comparable document that documents the vendor artefact but was not included by the vendor, as well as where that PDF, data file, ... can be found
 - provide an example CLI command (**especially when using `git subtree`!**) that can easily be pasted in a terminal to update the vendor.
-- consider turning the VENDOR file into a script so that users can run it raher than having to type in commands
+- **in fact, consider turning the VENDOR file into a script so that users can run vendor drops rather than having to type in commands**
 - if possible, include checsum GPG key fingerprint
-- this file also plays an important role for agents. At the time of writing was not aware of the filename convention
+- this file also plays an important role for AI agents. At the time of writing was not aware of the filename convention
 - it is possible that this file will have to describe local modifications in order to help with merge conflicts
 
 ## Binary data files
 
-Some artefacts are not available as text but in binary formats (eg [Yale Bright Star Catalog](http://tdc-www.harvard.edu/catalogs/catalogsb.html)).
+Some artefacts are not available as text but in binary formats. Examples:
 
-Example: `iras.tar.gz` at http://tdc-www.harvard.edu/catalogs/iras.html
+- [Yale Bright Star Catalog](http://tdc-www.harvard.edu/catalogs/catalogsb.html)
+- `iras.tar.gz` at http://tdc-www.harvard.edu/catalogs/iras.html
 
 Remember to also include the documentation:
 
@@ -58,7 +68,7 @@ Sometimes a format is accompanied by a metadata section describing the format of
 
 Sometimes, conversion routines need to be written or updated so that external data fits the project; maybe the data oitself is not needed, but only the generated data? These routines do not belong in the vendor branch, but in your project. 
 
-### How to deal with binaries
+### How to deal with binaries when supplying patches
 
 If your patch adds/changes binary files, then supply those separately.
 
@@ -181,8 +191,6 @@ When modifying vendor code, stick to the vendor coding style/conventions. Rewrit
 ## To be evaluated:
 
 - how to convert existing (modified or not) code to a vendor branch`
-- https://stackoverflow.com/ai-assist/shared/4adf31b5-4c07-4b3b-9fc1-61d89536a4b7
-	- impact on diff
 - a [rebasing vendor branch workflow](https://talesfromthearmchair.net/a-rebasing-vendor-branch-workflow-for.html)
 	- if you read this far, we need to grok that
 	- because rebasing might give issues.
@@ -191,6 +199,10 @@ When modifying vendor code, stick to the vendor coding style/conventions. Rewrit
 	-such as the migration of TLE format to spacedatastandards OMM (see [SGP4](cases/SGP4/README.md): their repo is too big for the average developer to ingest *as a vendor branch*.
 	- an interesting approach is to make a mirror of the vendor, apply local changes, and import the branch with the modified files "somehow" (not sure [CPM](https://github.com/cpm-cmake/CPM.cmake/discussions/720) is needed) in the local project.
 - remember to check whether the license may or may not allow vendor branching
-- https://pip.pypa.io/en/stable/development/vendoring-policy/
-- https://pip.pypa.io/en/stable/cli/pip_wheel/
+
+- Python
+	- https://pip.pypa.io/en/stable/development/vendoring-policy/
+	- https://pip.pypa.io/en/stable/cli/pip_wheel/
+	- https://www.andrlik.org/dispatches/all-in-on-uv/ -> https://astral.sh/ -> https://docs.astral.sh/uv/
+	- https://www.activestate.com/platform/supported-languages/python
 

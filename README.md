@@ -14,6 +14,9 @@ FIXME: image scaling...
 ![image](images/xkcd/dependency_2x.png)
 > Someday ImageMagick will finally break for good and we'll have a long period of scrambling as we try to reassemble civilization from the rubble. [explainxkcd](https://www.explainxkcd.com/wiki/index.php/2347:_Dependency)
 
+## TL;DR?
+Just read the (very short) [Wikipedia article](https://en.wikipedia.org/wiki/Branching_\(version_control\)#Vendor_branching).
+
 # Fork it [here](FORKING.md)!
 
 *You may use vendor branching to do that :-J*
@@ -25,11 +28,13 @@ Artefacts can be source code, data files, PDF files, supporting documentation...
 
 This document is the zillionth attempt at explaining the vendor branching mechanism. Despite the Internet abound with how-to's, developers keep falling in the trap.
 
-There is more: this is related to the concept of the software supply chain.
+There is more: this is related to the concept of the [software supply chain](https://en.wikipedia.org/wiki/Software_supply_chain).
 
 ## The problem
 
 *In short: copy-pasting artefacts is a seemingly easy way to get things imported in a project. The problem is the maintainance effort that will follow. Do not assume the data is "written in stone" and will never change any more (be it inside your project or externally). Instead, every time you import anything from outside your project, be it code or data, ***do not bluntly copy-paste***; don't just create a "fork" of foreign artefacts unless there really is no other way.*
+
+Unless you want to produce a hostile fork...
 
 Sometimes this problem is then solved by manual labor: porting the external changes in Stellarium, a laborous approach prone to bugs. **Extremely instructive use cases are presented on [Wikipedia](https://en.wikipedia.org/wiki/Software_rot#Forked_online_forum_example)**.
 
@@ -58,17 +63,16 @@ First, there are cases that I'm personally interested in, and are discussed sepa
 
 1. copy-paste issues in [Stellarium](cases/Stellarium/README.md) started the whole "vendor branching" project after [an interesting discussion](https://github.com/Stellarium/stellarium/discussions/1856)
 1. the [SGP4 copy-pasting](cases/SGP4/README.md) is a specific example inside Stellarium. I never thought it would become such an expanding oil spill
-1. a [subdirectory of the C47 project](https://gitlab.com/rpncalculators/c43/-/tree/master/tools/rejig) imports and then patches [rejig](https://tangentsoft.com/rejig/dir?ci=tip)
+1. a [subdirectory of the C47 project](https://gitlab.com/rpncalculators/c43/-/tree/master/tools/rejig) drew my attention: it imports and then patches the vendor [rejig](https://tangentsoft.com/rejig/dir?ci=tip)
 
 More examples can be found [here](EXAMPLES.md).
 
 ## A solution: [package managers](https://en.wikipedia.org/wiki/Package_manager)
 
 Sometimes this can be solved by using package managers that automate the importing and updating of external "stuff" (typically code) and - important - allow to fine tune which version is to be imported.
+But package managers do not allow to modify the imported code out of the box *and* benefit from external updates. Also, package managers are not always the easiest way to deal with vendors, sometimes due to a lack of experience of contributing C++ developers. **Vendor branching is far easier to work with** than configuring package managers, as all the required knowledge resides in how to deal with branching. 
 
 Python's `pip -e` is a great example of this. Modifying the vendor code [is less great](https://stackoverflow.com/questions/37668773/edit-package-installed-by-pip).
-
-An advanced example is [Activestate](https://www.activestate.com/platform/supported-languages/python).
 
 Artefacts that can be managed by package managers are not discussed here. An inconvenience of package managers might be that *local modifications* might be more difficult to manage. This is precisely what vendor branching has been designed for.
 
@@ -76,15 +80,19 @@ And sometimes there will be no package manager provided with the artefact. Often
 
 Package managers do not allow to modify the imported code out of the box *and* benefit from external updates. Also, package managers are not always the easiest way to deal with vendors, sometimes due to a lack of experience of contributing developers that often are volunteers - that come and go.
 
-## Amore KISS solution: **vendor branching**
+## Another solution: patches
 
-As it is obvious that the problem is widespread, it feels unlikely that many users will change their minds... So this whole discussion is mainly oriented to those who are still fresh in the discipline... And especially towards devs that are about to commit a "copy-paste offence".
+The idea is not to import the vendor artefacts, but create (and store in the repo) patches that patch the vendor at compile/make/... whatever time.
+
+## and now the KISS solution: **vendor branching**!
+
+Prior note: it is obvious that the problem is widespread, and it is unlikely that the affected projects will change the chosen path *(don't fix what isn't broken?)*... So this whole discussion is mainly oriented to those who are still fresh in the discipline... And especially towards devs that are about to commit a "copy-paste offence".
 
 **Vendor branching is far easier to work with** than working with package managers, as all the required knowledge resides in how to work with branching (and merging).
 
 The concept already exists:
 
-- in the venerable [CVS](https://www.gnu.org/software/trans-coord/manual/cvs/cvs.html): the ["Cederqvist" PDF](https://www.gnu.org/software/trans-coord/manual/cvs/html_node/Tracking-sources.html) is delicious lecture.
+- in the venerable [CVS](https://www.gnu.org/software/trans-coord/manual/cvs/cvs.html), branch 1.1.1 is the branch that holds vendor code. The ["Cederqvist" PDF](https://www.gnu.org/software/trans-coord/manual/cvs/html_node/Tracking-sources.html) is delicious lecture.
 - And [SVN](https://subversion.apache.org/blog/) (under ["Vendor Branches - Chapter 4. Branching and Merging"](https://svnbook.red-bean.com/en/1.8/svn.advanced.vendorbr.html)) is almost a reference.
 - [FreeBSD](https://github.com/freebsd/freebsd-doc/blob/main/documentation/content/en/articles/committers-guide/_index.adoc#54-vendor-imports-with-git) also explains the Vendor Branch concept (BTW - it uses `git subree`).
 
@@ -135,7 +143,11 @@ Interestingly, one could also use the same concept when "subcontracting" your co
 ## Other options, to discuss
 
 - clone the vendor into a separate repository
+	- inconvenience is that each developer has to do a clone
+	- git submodules do this
 - the monorepo approach
+	- https://danluu.com/monorepo/; 
+	- https://en.wikipedia.org/wiki/Monorepo
 
 ## See also
 
@@ -161,11 +173,6 @@ Interestingly, one could also use the same concept when "subcontracting" your co
 	- https://github.com/topics/vendors
 - https://github.com/stars/axd1967/lists/vendor-branching
 
-<!-- TODO
-### GitLab
-### Fossil
--->
-
 ### Copy-pasta
 
 - https://en.wikipedia.org/wiki/Software_rot
@@ -179,6 +186,11 @@ Interestingly, one could also use the same concept when "subcontracting" your co
 - https://en.wikipedia.org/wiki/Supply_chain_attack
 
 - https://en.wikipedia.org/wiki/Dependency_hell
+- https://shearer.org/articles/not-forking/
+
+- https://reproducible-builds.org/docs/volatile-inputs/
+- https://reproducible-builds.org/
+- https://medium.com/@larsxschneider/talk-dont-fork-743a1253b8d
 
 ![image](images/xkcd/519px-disclaimer_2x.png)
 

@@ -4,7 +4,7 @@ You know what forking means. So why a separate page for this?
 
 Because my own "forks" apply the vendor branching pattern.
 
-### Forks
+### Forks:
 
 These are the current forks:
 
@@ -21,5 +21,5 @@ These are the current forks:
 
 - BUSY: vendor the GitHub version *via tarball*
 
-What I want to do next is to modify things in repos 2 and 3 and contribute those modifications back to repo 1.
+What's up next? Make the circle complete by modifying things in repos 2 and 3, and contribute those modifications back to repo 1.
 

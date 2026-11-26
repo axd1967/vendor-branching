@@ -33,18 +33,6 @@ GitHub forks should be safe as long as they keep merging...
 
 But they too have to be merged somehow in their own project, and that's where Vendor Branching kicks in.
 
----
-
-Document revisions
-
-2026-11-07 v0.2
-
-- SDS OMM format
-
-2026-11-05 v0.1
-
----
-
 ## Celestrak: the SGP4 reference
 
 At least for the small fish, I'd say. I cannot imagine [SPICE](https://naif.jpl.nasa.gov/naif/toolkit.html), [STK](https://en.wikipedia.org/wiki/Systems_Tool_Kit), NORAD or USAF even taking the slightest notice of the VB approach...
@@ -57,7 +45,7 @@ Note that I'm not a scientist and have participated in one single academic paper
 
 TLE data is a major data source for SGP4.
 
-SDS provide the schema as well as decoders for various formats that replace the legacy TLE format. Therefore, if possible, use the VB approach ratger than bluntly copy-pasting their artefacts.
+SDS provide the schema as well as decoders for various formats that replace the legacy TLE format. Therefore, if possible, use the VB approach rather than bluntly copy-paste their artefacts.
 
 See also
 

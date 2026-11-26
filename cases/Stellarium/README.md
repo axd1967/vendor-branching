@@ -1,52 +1,28 @@
 # Vendor artifacts in Stellarium
 
+Stellarium is constantly benefiting from open source artifacts and being enriched with text/data/source files that are **copy-pasted** from places outside Stellarium.
+
 This document discusses vendor branching issues in Stellarium.
 
 1. the recipe for a generic vendor branch (VB) strategy is explained [here](../../README.md).
 1. SGP4 related VB aspects are dealt with [here](../SGP4/README.md).
 
-# DRAFT
-
-This file is being rewritten.
-
----
-
-- https://github.com/CelesTrak/fundamentals-of-astrodynamics/discussions/173
-- https://github.com/cpm-cmake/CPM.cmake/discussions/720
-
 ### The problem
 
 The Stellarium project regularly "copy-pastes" files from the outside. 
 
-A solution to this problem is called [Vendor Branching](../../README.md).
-
 An attempt was made to bring the attention to the issue in this [discussion](https://github.com/Stellarium/stellarium/discussions/1856).
 
-Stellarium is constantly benefiting from open source artifacts and being enriched with text/data/source files that are **copy-pasted** from places outside Stellarium.
-Notice how it is not always obvious to trace back the original files. In the case of ephemeride routines, these reside in "ancient", core Stellarium files, it is extremely likely that they were copied (and *maybe* recent changes have been manually  and painfully incorporated in Stellarium). One aspect of the recommended vendor branch procedure details how to include such *meta information* so as to help find back the (original, root) source at all times.
+A solution to this problem is called [Vendor Branching](../../README.md).
 
-Sometimes this can be solved by using package managers that automate the importing and updating of external "stuff" (typically code) and - important - allow to fine tune which version is to be imported; Python's `pip -e` is a great example of this. But package managers do not allow to modify the imported code out of the box *and* benefit from external updates. Also, package managers are not always the easiest way to deal with vendors, sometimes due to a lack of experience of contributing C++ developers. **Vendor branching is far easier to work with** than configuring package managers, as all the required knowledge resides in how to deal with branching. For example, read the root [MAINTAINER_BUSINESS.md](MAINTAINER_BUSINESS.md); notice that the proposed approach becomes complicated when changes need to be made.
+Often this will be easier than CPM. For example, read the root [MAINTAINER_BUSINESS.md](MAINTAINER_BUSINESS.md); notice that the proposed approach becomes complicated when changes need to be made.
 
 ## artefacts that have been copy-pasted into Stellarium
-Please note: this was the common, if not standard approach by most devs. 
+Please note: this was a common, if not standard approach by most contributors. 
 
-Notice how it is not always obvious to trace back the original files. In the case of ephemeride routines, these reside in "ancient", core Stellarium files, it is extremely likely that they were copied (and *maybe* recent changes have been manually  and painfully incorporated in Stellarium). One aspect of the recommended vendor branch procedure details how to include such *meta information* so as to help find back the (original, root) source at all times.
+Notice how it is not always obvious to trace back original files. In the case of ephemeride routines, these reside in "ancient", core Stellarium files, it is extremely likely that they were copied (and *maybe* recent changes have been manually  and painfully incorporated in Stellarium). One aspect of the recommended vendor branch procedure details how to include such *meta information* so as to help find back the (original, root) source at all times.
 
-All URLs link to the `master` version, which - ideally - may have dealt with the VB issue...
-
-## Future candidates
-
-- The reference SGP4 implementation from Vallado/Celestrak (https://github.com/CelesTrak/fundamentals-of-astrodynamics). Please see [SGP4](../SGP/README.md).
-	- the original code was copy-pasted [here](https://github.com/Stellarium/stellarium/tree/master/plugins/Satellites/src/gsatellite).
-- An upcoming Gaia DR3 draft patch by SceneryMC uses explicit references to two external repositories.
-See [Gaia DR3 PR](https://github.com/Stellarium/stellarium/pull/4991)... It refers to forked code from
-	- Henry Leung (https://github.com/henrysky/stellarium_star_catalogs)
-	- "SceneryMC" himself refers to artefacts in his repo (https://github.com/SceneryMC/stellarium_star_catalogs) (which - sic - forks off Leung's...)
-	- `parse_hip_catalog.py`
-	- `simbad_query_hipsaohdhr.py`
-	- `py/geodesic.py`
-Note: Henry Leung - whose repo is forked by SceneryMC - has a bad habit of renaming files. This makes vendoring more difficult although Git should be able to handle it.
-A branch has been pushed [here](https://github.com/axd1967/stellarium/tree/PR-4991-with-vendoring) to convert the Gaia DR3 PR to a "vendor compliant" approach.
+All URLs below link to the `master` version, which - ideally - may have dealt with the VB issue...
 
 ### Examples:
 
@@ -81,30 +57,6 @@ Here are several existing artifacts that (still) get copy-pasted in Stellarium:
 - (TODO: SOURCE) [SOFA sourcecode](https://www.iausofa.org/) (*Standards Of Fundamental Astronomy*), also mentioned in [Planet.cpp](https://github.com/Stellarium/stellarium/blob/ba80d33d4bc83d72fc15cca53f798cd9439482cf/src/core/modules/Planet.cpp#L1648).
 - tons of tools imported for the web version (https://github.com/Stellarium/stellarium-web-engine/tree/master/ext_src)
 
-Potential candidates for using vendor branching, other examples
-
--  Marc van der Sluys' [Constellation lines](https://github.com/MarcvdSluys/ConstellationLines) as a separate Sky Culture
-- [time ephemerides](http://timeephem.sourceforge.net/index.php)
-- although less likely, copy-pasted snippets from Qt examples *could* be candidates ([example](https://github.com/Stellarium/stellarium/blob/2db52c18bc87aaefa00d3d4a280969349634af8f/src/gui/StelGuiItems.cpp#L352))
-- [DASTCOM](https://ssd.jpl.nasa.gov/horizons/manual.html#dastcom): documentation and Fortran code
-- API documentation, e.g. for [Horizons API](https://ssd-api.jpl.nasa.gov/doc/horizons_file.html)
-- [SPICE](https://naif.jpl.nasa.gov/naif/)
-	- https://naif.jpl.nasa.gov/naif/toolkit.html
-	- https://naif.jpl.nasa.gov/pub/naif/ (!!)
-- contributed scripts, see https://stellarium.org/scripts.html. These are very likely to change over time... 
-
-Some random googling shows that this problem exists in other projects too (e.g. Celestia):
-
-- star catalogs are being corrected after publication (even if they are unlikely to be updated from within Stellarium, so an update might be no more than a basic copy-paste...):
-	- [Gaia DR3](stars/hip_gaia3/) (see the [release notes](https://www.cosmos.esa.int/web/gaia-users/archive/release-notes), look for "VERSION 3.2.1 [2023-02-07]")
-	- JWST Star Catalog ([documentation](https://jwst-docs.stsci.edu/jwst-observatory-characteristics/jwst-pointing-performance/jwst-guide-stars/jwst-guide-star-catalog-updates))
-- [Celestia](http://celestia.simulatorlabbs.com/CelSL/src/celephem/)
-- https://github.com/Bill-Gray/jpl_eph/blob/master/jpleph.h
-- [Stanford JSOC](http://jsoc.stanford.edu/cvs/JSOC/proj/timed/apps/Attic/jpleph.c?hidecvsroot=1&search=None&hideattic=1&sortby=rev&logsort=date&rev=1.1&content-type=text%2Fvnd.viewcvs-markup&diff_format=h)
-- https://apollo.astro.amu.edu.pl/PAD/pmwiki.php?n=Dybol.JPLEph:  
-**do notice the phrase** *"According to JPL fortran asc2eph.f (lines 101-102 and 197-198) I added new lines handling RPT and TPT arrays. "*. This is the typical meta issue that vendor branching tries to solve.
-Although some examples above are unlikely to ever change - or be very ephemeral (sic) - the reasoning is always: prevent rather than cure, and exercise a lot, until it becomes second nature. Just keep Murphy's Law in mind...
-
 ### example: VSOP87 data
 
 VSOP87 is outdated, but the approach remains the same for VSOP2013 (as well as JPL).
@@ -136,6 +88,45 @@ Should any of those "other readers" be used in any way in Stellarium, then these
 
 The vendor branch approach could also works for users that want to keep track of other user's configuration data (e.g. Ocular config) or scripts while at the same time apply local changes. However, this works better for file formats that are easily merged because being insensitive to *line numbers*, such as YAML or - even better, but neither are supported by Qt - KVN; a bad example is the (Qt backed) INI numbering format (e.g. [Ocular config files](https://github.com/Stellarium/stellarium/blob/ba80d33d4bc83d72fc15cca53f798cd9439482cf/plugins/Oculars/resources/default_ocular.ini)). An improvement is to use [Qt XML](https://doc.qt.io/qt-6/qtxml-index.html). See also https://www.surfsidemedia.in/post/what-are-some-alternatives-to-ini-files-for-configuration-management
 
+## Future candidates
+
+- The reference SGP4 implementation from Vallado/Celestrak (https://github.com/CelesTrak/fundamentals-of-astrodynamics). Please see [SGP4](../SGP/README.md).
+	- this will prevent having to correct bugs such as "Alpha5" issues.
+	- the original code was copy-pasted [here](https://github.com/Stellarium/stellarium/tree/master/plugins/Satellites/src/gsatellite).
+- An upcoming Gaia DR3 draft patch by SceneryMC uses explicit references to two external repositories.
+See [Gaia DR3 PR](https://github.com/Stellarium/stellarium/pull/4991)... It refers to forked code from
+	- Henry Leung (https://github.com/henrysky/stellarium_star_catalogs)
+	- "SceneryMC" himself refers to artefacts in his repo (https://github.com/SceneryMC/stellarium_star_catalogs) (which - sic - forks off Leung's...)
+	- `parse_hip_catalog.py`
+	- `simbad_query_hipsaohdhr.py`
+	- `py/geodesic.py`
+Note: Henry Leung - whose repo is forked by SceneryMC - has a bad habit of renaming files. This makes vendoring more difficult although Git should be able to handle it.
+A branch has been pushed [here](https://github.com/axd1967/stellarium/tree/PR-4991-with-vendoring) to convert the Gaia DR3 PR to a "vendor compliant" approach.
+
+## Potential candidates for using vendor branching, other examples
+
+-  Marc van der Sluys' [Constellation lines](https://github.com/MarcvdSluys/ConstellationLines) as a separate Sky Culture
+- [time ephemerides](http://timeephem.sourceforge.net/index.php)
+- although less likely, copy-pasted snippets from Qt examples *could* be candidates ([example](https://github.com/Stellarium/stellarium/blob/2db52c18bc87aaefa00d3d4a280969349634af8f/src/gui/StelGuiItems.cpp#L352))
+- [DASTCOM](https://ssd.jpl.nasa.gov/horizons/manual.html#dastcom): documentation and Fortran code
+- API documentation, e.g. for [Horizons API](https://ssd-api.jpl.nasa.gov/doc/horizons_file.html)
+- [SPICE](https://naif.jpl.nasa.gov/naif/)
+	- https://naif.jpl.nasa.gov/naif/toolkit.html
+	- https://naif.jpl.nasa.gov/pub/naif/ (!!)
+- contributed scripts, see https://stellarium.org/scripts.html. These are very likely to change over time... 
+
+Some random googling shows that this problem exists in other projects too (e.g. Celestia):
+
+- star catalogs are being corrected after publication (even if they are unlikely to be updated from within Stellarium, so an update might be no more than a basic copy-paste...):
+	- [Gaia DR3](stars/hip_gaia3/) (see the [release notes](https://www.cosmos.esa.int/web/gaia-users/archive/release-notes), look for "VERSION 3.2.1 [2023-02-07]")
+	- JWST Star Catalog ([documentation](https://jwst-docs.stsci.edu/jwst-observatory-characteristics/jwst-pointing-performance/jwst-guide-stars/jwst-guide-star-catalog-updates))
+- [Celestia](http://celestia.simulatorlabbs.com/CelSL/src/celephem/)
+- https://github.com/Bill-Gray/jpl_eph/blob/master/jpleph.h
+- [Stanford JSOC](http://jsoc.stanford.edu/cvs/JSOC/proj/timed/apps/Attic/jpleph.c?hidecvsroot=1&search=None&hideattic=1&sortby=rev&logsort=date&rev=1.1&content-type=text%2Fvnd.viewcvs-markup&diff_format=h)
+- https://apollo.astro.amu.edu.pl/PAD/pmwiki.php?n=Dybol.JPLEph:  
+**do notice following phrase:** *"According to JPL fortran asc2eph.f (lines 101-102 and 197-198) I added new lines handling RPT and TPT arrays. "*. This is the typical meta issue that vendor branching tries to solve.
+Although some examples above are unlikely to ever change - or be very ephemeral (sic) - the reasoning is always: prevent rather than cure, and exercise a lot, until it becomes second nature. Just keep Murphy's Law in mind...
+
 ## external discussions
 
 ### Stellarium
@@ -147,4 +138,7 @@ The vendor branch approach could also works for users that want to keep track of
 - Maybe https://github.com/Stellarium/stellarium/issues?q=label%3A%22dependencies%22
 - https://github.com/Stellarium/stellarium/issues/5170#issuecomment-6446431672
 - contributing sky cultures, landscapes, scripts
+
+- https://github.com/CelesTrak/fundamentals-of-astrodynamics/discussions/173
+- https://github.com/cpm-cmake/CPM.cmake/discussions/720
 

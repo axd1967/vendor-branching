@@ -40,10 +40,13 @@ TODO
 - https://www.conventionalcommits.org/
 - https://agents.md/ / https://github.com/agentsmd/agents.md
 - https://r2.damoang.net/data/editor/2606/4b9bb99.pdf
-
 - https://www.reddit.com/answers/761b2458-416d-4446-8d5f-1beeee27d405/?q=How+AI+coding+agents+explain+code+changes&source=PDP&ep=pdp_unit&relatedPostId=t3_1nfzhqd&tl=en
 - https://www.reddit.com/r/github/comments/1xto5ge/has_ai_changed_the_way_people_contribute_to/
 - https://youtu.be/cxwfrohYCcc?is=I2UPk8NaiGZTFrzE
 - https://en.wikipedia.org/wiki/Vibe_coding
 - https://en.wikipedia.org/wiki/List_of_AI-assisted_software_development_tools
 - https://en.wikipedia.org/wiki/Natural_language_programming
+- https://steve-yegge.medium.com/welcome-to-gas-town-4f25ee16dd04
+- https://stackoverflow.com/ai-assist/shared/4adf31b5-4c07-4b3b-9fc1-61d89536a4b7
+	- impact on diff
+

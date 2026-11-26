@@ -166,3 +166,9 @@ See also
 - how to correctly vendor drop: https://github.com/git/git/blob/master/Documentation/git-rm.adoc#using-git-add--a
 
 see ``git help git-rm`` for details, search for "[vendor](https://github.com/git/git/blob/master/Documentation/git-rm.adoc#using-git-add--a)". *Do notice BTW that the concept is mentioned in Git*
+- https://git-man-page-generator.lokaltog.net/
+
+https://sfconservancy.org/GiveUpGitHub/
+https://giveupgithub.org/
+https://en.wikipedia.org/wiki/Embrace,_extend,_and_extinguish
+

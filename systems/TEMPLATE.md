@@ -5,6 +5,8 @@
 	2. replace XXX with your favourite VCS name: CVS, SVN, ... 
 	3. use https://github.com/axd1967/vendor-branching as an example vendor drop!
 
+	A script could use following variables:
+	
 	VENDOR = axd1967/vendor-branching
 	URL = https://github.com/$VENDOR
 	VERSION = master

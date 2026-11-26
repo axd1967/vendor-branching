@@ -14,6 +14,11 @@ Projects that use the Vendor Branching approach.
 
 Projects that identified the vb issue and chose to delegate vendoring to tools *(other than package managers)*.
 - Projects using https://github.com/thejoshwolfe/git-vendor
+- Not-forking
+	- https://shearer.org/articles/not-forking/
+	- https://codeberg.org/Not-forking/not-forking
+	- https://lumosql.org/src/not-forking/doc/trunk/README.md
+	- https://dl.acm.org/doi/10.1145/280277.280280
 
 ## "copy-pasta under the hood"
 
