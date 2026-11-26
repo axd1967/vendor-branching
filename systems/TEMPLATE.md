@@ -1,7 +1,7 @@
 # Vendor Branching using XXX
 
 <!-- 
-	1. copy as a new page XXX.md
+	1. copy as a new page systems/XXX.md
 	2. replace XXX with your favourite VCS name: CVS, SVN, ... 
 	3. use https://github.com/axd1967/vendor-branching as an example vendor drop!
 
