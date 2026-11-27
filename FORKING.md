@@ -19,7 +19,7 @@ These are the current forks:
 
 ## 3. [ChiselApp](https://chiselapp.com/user/axd/repository/vendor-branching) 
 
-- BUSY: vendor the GitHub version *via tarball*
+- imports the GitHub version as a zipfile`
 
 What's up next? Make the circle complete by modifying things in repos 2 and 3, and contribute those modifications back to repo 1.
 
