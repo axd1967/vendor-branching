@@ -2,7 +2,7 @@ How to implement vendor branching with various VCS tools
 
 1. [AI](cases/AI/README.md) (busy)
 1. [Git](GIT.md)
-1. [Fossil](FOSSIL.md) (busy)
+1. [Fossil](FOSSIL.md) (almost finished)
 1. CVS? It's antiquated, but has the vendor branch pattern baked in
 1. SVN
 1. ClearCase?
