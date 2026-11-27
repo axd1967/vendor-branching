@@ -1,7 +1,7 @@
 # Vendor Branching using XXX
 
 <!--
-	TODO: it looks like there is a need for a separate VENDOR.sh template.
+	TODO: looks like there is a need for a separate VENDOR.sh template.
 -->
 
 <!-- 

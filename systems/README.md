@@ -1,4 +1,4 @@
-How to implement vendor branching with various VCS tools
+Recipes to implement vendor branching using various VCS.
 
 1. [AI](cases/AI/README.md) (busy)
 1. [Git](GIT.md)

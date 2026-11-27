@@ -84,6 +84,8 @@ Package managers do not allow to modify the imported code out of the box *and* b
 
 The idea is not to import the vendor artefacts, but create (and store in the repo) patches that patch the vendor at compile/make/... whatever time.
 
+An advanced solution might be [Not-forking](https://lumosql.org/src/not-forking/doc/trunk/README.md).
+
 ## and now the KISS solution: **vendor branching**!
 
 Prior note: it is obvious that the problem is widespread, and it is unlikely that the affected projects will change the chosen path *(don't fix what isn't broken?)*... So this whole discussion is mainly oriented to those who are still fresh in the discipline... And especially towards devs that are about to commit a "copy-paste offence".
@@ -94,7 +96,7 @@ The concept already exists:
 
 - in the venerable [CVS](https://www.gnu.org/software/trans-coord/manual/cvs/cvs.html), branch 1.1.1 is the branch that holds vendor code. The ["Cederqvist" PDF](https://www.gnu.org/software/trans-coord/manual/cvs/html_node/Tracking-sources.html) is delicious lecture.
 - And [SVN](https://subversion.apache.org/blog/) (under ["Vendor Branches - Chapter 4. Branching and Merging"](https://svnbook.red-bean.com/en/1.8/svn.advanced.vendorbr.html)) is almost a reference.
-- [FreeBSD](https://github.com/freebsd/freebsd-doc/blob/main/documentation/content/en/articles/committers-guide/_index.adoc#54-vendor-imports-with-git) also explains the Vendor Branch concept (BTW - it uses `git subree`).
+- [FreeBSD](https://github.com/freebsd/freebsd-doc/blob/main/documentation/content/en/articles/committers-guide/_index.adoc#54-vendor-imports-with-git) also explains the Vendor Branch concept (BTW - it uses `git subtree`).
 
 Importing external artifacts requires a specific (and in this case a *simple* - believe me, it is not rocket science - as well as generic) and approach: the **Vendor Branch** approach. The proposed approach is KISS: *simple to apply to novice programmers*. By the way, the approach is valid in any VCS, such as SVN, Git, Mercurial, ClearCase, Fossil, TFS, CVS (where it already exists), you name it.
 
@@ -184,10 +186,9 @@ Interestingly, one could also use the same concept when "subcontracting" your co
 
 - https://en.wikipedia.org/wiki/Software_supply_chain
 - https://en.wikipedia.org/wiki/Supply_chain_attack
-
 - https://en.wikipedia.org/wiki/Dependency_hell
 - https://shearer.org/articles/not-forking/
-
+- https://lumosql.org/src/not-forking/
 - https://reproducible-builds.org/docs/volatile-inputs/
 - https://reproducible-builds.org/
 - https://medium.com/@larsxschneider/talk-dont-fork-743a1253b8d
